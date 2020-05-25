@@ -1,1 +1,3 @@
 # Covid19Twitter
+
+This is a project that aims to locate tweets, related to the covid19 virus from twitter. Then using their hashtags or keywords as tags, build a neural network that can differentiate which tweets were related to the virus. The supervisor of this project is Mike Izbicki, Ph.D. Assistant Professor of Computer Science in Claremont Mckenna College. Language used is going to be python and essential libaries are pytorch,matplotlib.
