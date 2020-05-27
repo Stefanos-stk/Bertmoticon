@@ -1,2 +1,13 @@
 5/25/2020
 Created the git repo for Covid19 Twitter Project. 
+
+5/26/2020
+Read the documentation for the Nvidia Sentiment. Encountered multiple errors with pytorch and its incopatabilities with python. Started running some test.csv files with the run_classifier.
+
+5/27/2020
+Read the Nvidia related paper about this codebase. Found it very interesting that with so little data it was able to outperfom other algorithms with millions of data. 
+
+The confrences I will be interested in are the following:
+-http://www.netcopia.net/nlp4if/ : NLP for freedom 
+-https://healthlanguageprocessing.org/smm4h/ Social Media Mining for Health Applications (#SMM4H) Workshop & Shared Task 2020 
+-https://www.pheme.eu/rdsm2020/ 3rd International Workshop on Rumours and Deception in Social Media
