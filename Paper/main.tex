@@ -1,0 +1,176 @@
+\documentclass[11pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{coling2020}
+\usepackage{times}
+\usepackage{url}
+\usepackage{latexsym}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks   = true, %Colours links instead of ugly boxes
+  urlcolor     = blue, %Colour for external hyperlinks
+  linkcolor    = blue, %Colour of internal links
+  citecolor    = blue  %Colour of citations
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% paper configuration
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\setlength\titlebox{5cm}
+%\colingfinalcopy % Uncomment this line for the final submission
+
+% You can expand the titlebox if you need extra space
+% to show all the authors. Please do not make the titlebox
+% smaller than 5cm (the original size); we will check this
+% in the camera-ready version and ask you to change it back.
+
+
+\title{Instructions for COLING-2020 Proceedings}
+
+\author{First Author \\
+  Affiliation / Address line 1 \\
+  Affiliation / Address line 2 \\
+  Affiliation / Address line 3 \\
+  {\tt email@domain} \\\And
+  Second Author \\
+  Affiliation / Address line 1 \\
+  Affiliation / Address line 2 \\
+  Affiliation / Address line 3 \\
+  {\tt email@domain} \\}
+
+\date{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% latex functions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% document text
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+\begin{abstract}
+\end{abstract}
+
+%
+% The following footnote without marker is needed for the camera-ready
+% version of the paper.
+% Comment out the instructions (first text) and uncomment the 8 lines
+% under "final paper" for your variant of English.
+% 
+\blfootnote{
+    %
+    % for review submission
+    %
+    \hspace{-0.65cm}  % space normally used by the marker
+    Place licence statement here for the camera-ready version. 
+    %
+    % % final paper: en-uk version 
+    %
+    % \hspace{-0.65cm}  % space normally used by the marker
+    % This work is licensed under a Creative Commons 
+    % Attribution 4.0 International Licence.
+    % Licence details:
+    % \url{http://creativecommons.org/licenses/by/4.0/}.
+    % 
+    % % final paper: en-us version 
+    %
+    % \hspace{-0.65cm}  % space normally used by the marker
+    % This work is licensed under a Creative Commons 
+    % Attribution 4.0 International License.
+    % License details:
+    % \url{http://creativecommons.org/licenses/by/4.0/}.
+}
+
+\section{Introduction}
+\label{sec:intro}
+
+\section{Method Overview}
+\label{sec:method}
+
+\section{Experiments}
+\label{sec:experiments}
+
+\section{Related Work}
+\label{sec:related}
+
+\subsection{Ben}
+
+Very similar to what we want to do: \cite{rupnik2016news,miranda2018multilingual,wang2018estimation,germann2019scalable,seki2018exploring,seki2020cross,linger2020batch}
+
+Brexit case study: \cite{peterlin2019detecting}
+
+Also similar, but involving search terms; probably just good for citations and not techniques: \cite{rupnik2016news}
+
+Multilingual BERT:
+
+\cite{K2020Cross-Lingual}
+
+\cite{pires2019multilingual}
+
+More multilingual models non-BERT from google:
+
+https://ai.googleblog.com/2019/07/multilingual-universal-sentence-encoder.html
+
+https://arxiv.org/abs/1807.11906
+https://arxiv.org/abs/1810.12836
+https://arxiv.org/abs/1902.08564
+https://arxiv.org/abs/1906.08401
+https://arxiv.org/abs/1907.04307
+
+Old survey but good on non deep learning techniques of the era: \cite{oard1998survey}.
+
+\subsection{Stefanos}
+
+Datasets:
+
+\cite{liu2019dens}
+
+\cite{SemEval2018Task1}
+
+Pretrained models:
+
+\cite{puri2018large}
+
+\cite{kant2018practical}
+
+Examples of large scale sentiment analysis:
+
+\cite{mohammad2015sentiment}
+
+\cite{hemmatian2017survey}
+
+\cite{yang2015twitter}
+
+\subsection{Nate}
+
+Look at the way these papers run experiments:
+
+\cite{tifrea2018poincar,meng2019spherical}
+
+Datasets at: \url{https://aclweb.org/aclwiki/Similarity_(State_of_the_art)}
+
+Use wikidata to automatically generate classes: https://www.wikidata.org/wiki/Q43689 
+https://pywikidata.readthedocs.io/en/latest/
+
+wikidata church fathers in latin: \url{https://query.wikidata.org/#SELECT%20%3Fperson%20%3FpersonLabel%0AWHERE%20%7B%0A%20%20%3Fperson%20wdt%3AP361%20wd%3AQ182603.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22la%22.%20%7D%0A%7D}
+
+SPARQL Tutorial: https://www.wikidata.org/wiki/Wikidata:SPARQL_tutorial
+
+Can we use wikidata to automatically generate good evaluations?
+
+\section{Discussion}
+\label{sec:discussion}
+
+
+\bibliographystyle{coling}
+\bibliography{main}
+
+\end{document}
