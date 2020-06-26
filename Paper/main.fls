@@ -70,8 +70,14 @@ INPUT C:\Users\Stefanos Stoikos\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hype
 INPUT C:\Users\Stefanos Stoikos\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\nameref.sty
 INPUT C:\Users\Stefanos Stoikos\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty
 INPUT C:\Users\Stefanos Stoikos\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty
-OUTPUT c:\Users\Stefanos Stoikos\covid19t\Covid19Twitter\Paper\main.out
+INPUT c:\Users\Stefanos Stoikos\covid19t\Covid19Twitter\Paper\main.out
+INPUT c:\Users\Stefanos Stoikos\covid19t\Covid19Twitter\Paper\main.out
+INPUT c:\Users\Stefanos Stoikos\covid19t\Covid19Twitter\Paper\main.out
+INPUT c:\Users\Stefanos Stoikos\covid19t\Covid19Twitter\Paper\main.out
 OUTPUT c:\Users\Stefanos Stoikos\covid19t\Covid19Twitter\Paper\main.pdf
+INPUT c:\Users\Stefanos Stoikos\covid19t\Covid19Twitter\Paper\main.out
+INPUT c:\Users\Stefanos Stoikos\covid19t\Covid19Twitter\Paper\main.out
+OUTPUT c:\Users\Stefanos Stoikos\covid19t\Covid19Twitter\Paper\main.out
 INPUT C:\Users\Stefanos Stoikos\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\times\ptmr7t.tfm
 INPUT C:\Users\Stefanos Stoikos\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\times\ptmb7t.tfm
 INPUT C:\Users\Stefanos Stoikos\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\times\ptmr7t.tfm

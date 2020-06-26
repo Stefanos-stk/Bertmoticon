@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 0 "main.aux" "main.bbl" "main" 0
+["bibtex main"] 1593182622 "main.aux" "main.bbl" "main" 1593182622
   "./coling.bst" 1593160896 25098 c6a3d2887fd8745756d355478c5a86c9 ""
-  "main.aux" 0 -1 0 ""
+  "main.aux" 1593182608 2596 34ef1e8d0d2849af89466ae7d4383f67 ""
   "main.bib" 0 -1 0 ""
   (generated)
   "main.blg"
   "main.bbl"
-["pdflatex"] 1593181890 "c:/Users/Stefanos Stoikos/covid19t/Covid19Twitter/Paper/main.tex" "c:/Users/Stefanos Stoikos/covid19t/Covid19Twitter/Paper/main.pdf" "main" 1593181890
+["pdflatex"] 1593182607 "c:/Users/Stefanos Stoikos/covid19t/Covid19Twitter/Paper/main.tex" "c:/Users/Stefanos Stoikos/covid19t/Covid19Twitter/Paper/main.pdf" "main" 1593182622
   "C:/Users/Stefanos Stoikos/AppData/Local/MiKTeX/2.9/miktex/data/le/pdftex/pdflatex.fmt" 1548641467 4171808 01ce9e1b26916172b041927de927fb07 ""
   "C:/Users/Stefanos Stoikos/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map" 1593175448 80630 9058a4e8d6b11a677690c2908e3b8400 ""
   "C:/Users/Stefanos Stoikos/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -67,20 +67,20 @@
   "C:/Users/Stefanos Stoikos/AppData/Local/Programs/MiKTeX 2.9/tex/latex/psnfss/ot1ptm.fd" 1137146630 961 15056f4a61917ceed3a44e4ac11fcc52 ""
   "C:/Users/Stefanos Stoikos/AppData/Local/Programs/MiKTeX 2.9/tex/latex/psnfss/times.sty" 1156738454 857 6c716f26c5eadfb81029fcd6ce2d45e6 ""
   "C:/Users/Stefanos Stoikos/AppData/Local/Programs/MiKTeX 2.9/tex/latex/url/url.sty" 1388494052 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "c:/Users/Stefanos Stoikos/covid19t/Covid19Twitter/Paper/main.aux" 1593181890 9 a94a2480d3289e625eea47cd1b285758 ""
-  "c:/Users/Stefanos Stoikos/covid19t/Covid19Twitter/Paper/main.tex" 1593181886 4265 ca4701dbbd6040ece82d3a88d0a8bc06 ""
+  "c:/Users/Stefanos Stoikos/covid19t/Covid19Twitter/Paper/main.aux" 1593182608 2596 34ef1e8d0d2849af89466ae7d4383f67 ""
+  "c:/Users/Stefanos Stoikos/covid19t/Covid19Twitter/Paper/main.tex" 1593182621 4214 72815963e1feedd4519cdf742f13c180 ""
   "coling2020.sty" 1593160896 15153 bcfc1876efe37df37f636f688019b18f ""
   "images/Plutchik-wheel.png" 1593170324 190122 b08cefb7d68081e831146f4a3f332897 ""
   "images/emotions.eps" 1593175033 52036 0689595992bf6a3838fbc9f55ad4f3e3 ""
   "images/finalcountgraph1.eps" 1593179048 44529 4b7706d0076e71411c6bb01097b73004 ""
-  "main.aux" 0 -1 0 ""
+  "main.aux" 1593182608 2596 34ef1e8d0d2849af89466ae7d4383f67 ""
   "main.bbl" 0 -1 0 "bibtex main"
-  "main.out" 0 -1 0 ""
-  "main.tex" 1593181886 4265 ca4701dbbd6040ece82d3a88d0a8bc06 ""
+  "main.out" 1593182608 376 cf753c58665264020921092ada61b243 ""
+  "main.tex" 1593182621 4214 72815963e1feedd4519cdf742f13c180 ""
   (generated)
-  "main.out"
-  "c:/Users/Stefanos Stoikos/covid19t/Covid19Twitter/Paper/main.log"
   "main.pdf"
+  "c:/Users/Stefanos Stoikos/covid19t/Covid19Twitter/Paper/main.log"
   "c:/Users/Stefanos Stoikos/covid19t/Covid19Twitter/Paper/main.pdf"
-  "main.log"
+  "main.out"
   "main.aux"
+  "main.log"
