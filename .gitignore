@@ -9,6 +9,8 @@ __pycache__
 *.aux
 *.blg
 *.out
+*.fls
+*.fdb_latexmk
 
 # vim
 *.swo
