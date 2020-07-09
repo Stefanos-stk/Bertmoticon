@@ -273,6 +273,14 @@ The tweets contained in each set are then the tweets sent by each of the users i
 
 Importantly, duplicate tweets are included in the $\corona$ dataset,
 but they are not included in the $\emoticon$ dataset.
+This is because of the purpose of the $\emoticon$ dataset. 
+We aimed to apply our $\model$ to this dataset,
+which is something with free user input where our training data is not fully representative of the eventual data our model will be applied to.
+Therefore this limits our abilities to make assumptions and could possibly inflate our sense of model efficacy.
+On the other hand when dealing with the $\corona$ dataset,
+duplicate inputs result in some distribution on our outputs.
+Since we want to map out the public's emotional response to the coronavirus, it is important 
+for those distributions to be maintained.
 \fixme{Can you come up with an explanation about why this is good or bad?}
 
 \section{Experiments}
@@ -289,32 +297,50 @@ We use these emotion labels to then show how different people around the world h
 
 \section{Related Work}
 \label{sec:related}
-\subsection{Stefanos}
-Datasets: 
-
-DENS: A Dataset for Multi-class Emotion Analysis:By finetuning the pre-trained uncased BERT-large to a multi-class passage classification task they achieved a micro-F1 score of 60.4\%. 
-
-
-
+\subsection{Datasets:}
+It is now worth mentioning previous datasets related with sentiment and emotion classification. The Sentiment Evaluation task 2018 \cite{SemEval2018Task1} presents a dataset of English, Arabic and Spanish tweets extracted from Twitter API, labelled for an array of subtasks on inferring the affectual state of a person from their tweet. Seventy-five teams submitted to one or more of the five total tasks; however, most of the submissions where for the language English. 
+\cite{liu2019dens} introduces the DENS dataset, for multi-class emotion analysis. By collecting both English classic literature and modern online narratives, and by fine-tuning the pre-trained uncased BERT-large model to the multi-class passage classification task they achieved a micro-F1 average score of 60.4\%.
 %\cite{liu2019dens}
 
 %\cite{SemEval2018Task1}
-
-Pretrained models:
-
+\subsection{Pretrained models:}
+On the domain of Pre-trained models for Natural Language Tasks, NVIDIA's researchers have published 
+\cite{puri2018large} where by using Recurrent Neural Networks on a 40 GB Amazon Review dataset demonstrate 
+the scalability and transfer of the RNNs. By utilizing mixed precision arithmetic and 
+a 32k batch size distributed on 128 GPUs, they trained a character-level 4096-dimension mLSTM.
+Furthermore, \cite{kant2018practical} claim that large-scale unsupervised language modeling combined 
+with finetuning, provides a solution to the Multi-Emotion sentiment classification (Plutchik),
+including those with label class imbalance and domain-specific context. By training an attention-based
+transformer network on a Amazon 40 GB dataset, it outperforms the mLSTM model, while fine-tuning significantly 
+improves performance for both Transformers and mLSTM.
 %\cite{puri2018large}
 
 %\cite{kant2018practical}
 
-Examples of large scale sentiment analysis:
-
+\subsection{Examples of large scale sentiment analysis:}
+\cite{mohammad2015sentiment} explores both stance and sentiment analysis by providing a dataset of annotated tweet-target pairs, organized
+a shared Task competition on Stance. Their stance detection system achieved an F-score of 70.3 \%, where they utilized an linear-kernel
+SVM classifier. Their stance dataset contains 4k tweets, aimed towards topics such as Hillary Clinton, Atheism and etc. In addition,
+\cite{yang2015twitter} provides an insight into measuring emotional contagion in Social Media. By using SentiStrengh (a sentiment analysis program),
+and the findings of a study which claims that individuals are more likely to adopt positive or negative emotions if these are over-expressed in
+their social network; the authors pursuit in establishing a relation between the sentiment of a tweet and that of the tweets that its author may have seen in a short
+time period preceding its posting. Interestingly, they raise ethical concerns as they require massive-scale content manipulation with unknown consequences for the individuals therein involved.
+Finally, the provide noteworthy limitations of observational experiments.
 %\cite{mohammad2015sentiment}
 
 %\cite{hemmatian2017survey}
 
+
 %\cite{yang2015twitter}
-
-
+\subsection{Emoji Prediction:}
+It is now worth mentioning previous work on Emoji Prediction. \cite{SemEval2018Task2} offered 2 subtasks for multilingual-emoji prediction: English and Spanish. By using Twitter API,
+they located tweets either in the US (600k total) or in Spain (120k total). The tweets only included the one's with a single emoji and where limited to the top 20 emojis used across those countries. \cite{Tubingen Olso} achieved 
+the best performance in both the English and Spanish Tweets: F1-Score: 35.99 \%, F1-Score: 22.36 \% respectively obtained by an SVM classifier with bag-of-n-grams features. One of the best performing teams 
+\cite{NTUA-SLP}, achieved an F1-score of 35.36 \% on the English tweets, by using LSTM architecture with attention mechanism, initializing the embedding layer with word2vec and training end-to-end with back-propagation. 
+The preprocessing tool they used was ekprahsis \cite{Baziotis} which contains social tokenizer aimed for social media, spell correction and word segmentation which can be used for hashtag segmentation. Finally, \cite{towards understanding creatieve lang}
+explores both Irony Detection and the Emoji Prediction Task. They highlight that the knowledge the models gain is entirely from the corresponding training data, such training mechanism may work well for traditional text genres with formal sentences; however; 
+it usually achieves an unsatisfiable performance with informal text, such as social media text.  By adopting a transfer learning model based on pretrained-BERT they achieved an F1-Score of 38.52 \% on the Emoji Prediction task. Issues raised by the authors were: overfitting 
+due to the lack of more training data to fine-tune the system and time complexity.  
 \section{Discussion}
 \label{sec:discussion}
 
