@@ -251,6 +251,9 @@ we filtered the full set of geolocated tweets so that only tweets containing one
 and any duplicate tweets were removed.
 Then we preprocessed each tweet by replacing all user mentions with a special token \texttt{<mention>} and all URLs with a special token \texttt{<url>} and deleting all emojis.
 We decided to keep all hashtags because hashtags can contain potentially valuable emotional content.
+There exist a lot of tweets that contain multiple repetitions of emojis.
+We address the issue similarly to how \cite{100 million tweets} did where for each unique emoji we have a separate tweet with that emoji as a label. 
+For tweets containing repetitions of the same emoji; we only save one instance of it.
 Finally, each tweet is labelled with the emojis that were deleted from the tweet.
 
 In total, the $\emoticon$ dataset contains 64.2 million tweets sent by 4.2 million users,
@@ -343,7 +346,11 @@ it usually achieves an unsatisfiable performance with informal text, such as soc
 due to the lack of more training data to fine-tune the system and time complexity.  
 \section{Discussion}
 \label{sec:discussion}
-
+-Figure with number of tweets per language top 10? (Written Form) Twitter Emoticon
+-Accuracies for BERT model with different hyper parameters and benchmarks 
+-Twitter Corona a graph similar to what I did with the nvidia sent but for the emoji's top 10 
+-Figure for correlation between plutchik wheel and emoji (the one you posted on github)
+-Spatial distribution of the dataset 
 
 %\bibliographystyle{coling}
 \bibliographystyle{plainnat}
