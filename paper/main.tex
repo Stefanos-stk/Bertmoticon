@@ -2,6 +2,9 @@
 \usepackage{graphicx}
 \usepackage{enumitem}
 
+%\usepackage{subfig}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -161,7 +164,7 @@ such as \texttt{coronavirus}, \texttt{covid19}, \texttt{wuhan} and \texttt{lockd
 We then used Bing's translation API to translate each of these terms into the 72 languages supported by Bing translate.
 Table \ref{table:search_terms} in the supplemental material contains the full list of search terms in English and selected translations.
 \item
-We used Python's \texttt{spacy} library \citep{fixme} to tokenize and lemmatize each of the \XXX million tweets in the full dataset.
+We used Python's \texttt{spacy} library \citep{spacy2} to tokenize and lemmatize each of the \XXX million tweets in the full dataset.
 \texttt{spacy} supports this process in 58 different languages,
 and for each tweet we used the appropriate \texttt{spacy} module for the language specified in the tweet's metadata.
 \item
@@ -171,23 +174,18 @@ We include both languages in this filtering step because it is common for non-En
 Table \ref{table:lang} shows the 54 languages that are supported by all 3 services along with the total number of tweets in each language.
 Figure \ref{fig:corona:perday} provides a summary of the number of tweets per day and Figure \ref{fig:corona:spatial} shows the spatial distribution of the tweets.
 
-\begin{table}
-    \centering
-    \includegraphics[height=2in]{example-image-a}
-    \caption{The number of tweets in each language.} 
-    \label{table:lang}
-\end{table}
+
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{images/finalcountgraph1.eps}
-    \caption{Number of tweets per day...}
+    \includegraphics[width=\textwidth]{images/finalcountgraph1}
+    \caption{Number of tweets per day for hashtags related with coronavirus or the lockdown}
     \label{fig:tweets_per_day}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[height=2in]{example-image-a}
+    \includegraphics[height=2in]{distribution_countries.eps}
     \caption{The spatial distribution of the dataset.}
     \label{fig:corona:spatial}
 \end{figure}
@@ -216,12 +214,13 @@ and the results are shown in Figure \ref{fig:nvidia-sentiment}.
 The results are not very informative, however, because NVidia's model was trained on a small set of English-language tweets (about 16 thousand) about video games,
 and there is little reason to believe that this domain would transfer well to the coronavirus domain.
 
-\begin{figure}
-    %\includegraphics[width=0.4\textwidth]{images/Plutchik-wheel.png}
-    \includegraphics[width=\textwidth]{images/emotions.eps}
-    \caption{Results of sentiment analysis conducted using nvidia-sentiment on 170k tweets related with the corona outrbreak }
-    \label{fig:nvidia-sentiment}
-\end{figure}
+\begin{table}
+    \centering
+    \includegraphics[height=2in]{distribution_lang.eps}
+    \caption{The number of tweets in each language.} 
+    \label{table:lang}
+\end{table}
+
 
 \subsection {The $\emoticon$ dataset}
 
@@ -242,7 +241,7 @@ In our analysis, we use only the original 80 emoji defined in the Unicode standa
 }
 We limit are analysis to emoticons only because:
 they are the most commonly used emoji on twitter\footnote{
-    See \url{http://www.emojitracker.com/} for realtime stats on Twitter emoji usage.
+    See \url{http://www.emojitracker.com/} for real-time stats on Twitter emoji usage.
 }
 and each of these emoticons represents an emotion (emoticon is a portmanteau of emotion and icon).
 
@@ -255,18 +254,22 @@ There exist a lot of tweets that contain multiple repetitions of emojis.
 We address the issue similarly to how \cite{100 million tweets} did where for each unique emoji we have a separate tweet with that emoji as a label. 
 For tweets containing repetitions of the same emoji; we only save one instance of it.
 Finally, each tweet is labelled with the emojis that were deleted from the tweet.
-
+s
 In total, the $\emoticon$ dataset contains 64.2 million tweets sent by 4.2 million users,
 and the tweets are written in 66 different languages and were sent from 246 different countries.
 Table \ref{table:lang} shows the total number of tweets per language,
 and Figure \ref{fig:emoticons} shows the full list of emoticons and their counts in our dataset. 
 
-\begin{figure}
+\begin{figure}%
     \centering
-    \includegraphics[height=2in]{example-image-a}
-    \caption{Emoticons image.}
-    \label{fig:emoticons}
+    \subfloat{{\includegraphics[scale=0.78]{./images/emojitable.pdf}}}%
+    \label{adsad}
+    \subfloat{{\includegraphics[scale =0.21]{emoticonwheel.jpg} }}%
+    \caption{2 Figures side by side}%
+    \label{fig:example}%
 \end{figure}
+
+
 
 Our goal with this dataset is to construct a classifier that takes as input a tweet and outputs an emoticon that represents the emotion of the tweet.
 In order to train this model properly,
@@ -301,7 +304,7 @@ We use these emotion labels to then show how different people around the world h
 \section{Related Work}
 \label{sec:related}
 \subsection{Datasets:}
-It is now worth mentioning previous datasets related with sentiment and emotion classification. The Sentiment Evaluation task 2018 \cite{SemEval2018Task1} presents a dataset of English, Arabic and Spanish tweets extracted from Twitter API, labelled for an array of subtasks on inferring the affectual state of a person from their tweet. Seventy-five teams submitted to one or more of the five total tasks; however, most of the submissions where for the language English. 
+It is now worth mentioning previous datasets related with sentiment and emotion classification. The Sentiment Evaluation task 2018 \cite{mohammad-etal-2018-semeval} presents a dataset of English, Arabic and Spanish tweets extracted from Twitter API, labelled for an array of subtasks on inferring the affectual state of a person from their tweet. Seventy-five teams submitted to one or more of the five total tasks; however, most of the submissions where for the language English. 
 \cite{liu2019dens} introduces the DENS dataset, for multi-class emotion analysis. By collecting both English classic literature and modern online narratives, and by fine-tuning the pre-trained uncased BERT-large model to the multi-class passage classification task they achieved a micro-F1 average score of 60.4\%.
 %\cite{liu2019dens}
 
@@ -321,7 +324,7 @@ improves performance for both Transformers and mLSTM.
 %\cite{kant2018practical}
 
 \subsection{Examples of large scale sentiment analysis:}
-\cite{mohammad2015sentiment} explores both stance and sentiment analysis by providing a dataset of annotated tweet-target pairs, organized
+\cite{mohammad2016stance} explores both stance and sentiment analysis by providing a dataset of annotated tweet-target pairs, organized
 a shared Task competition on Stance. Their stance detection system achieved an F-score of 70.3 \%, where they utilized an linear-kernel
 SVM classifier. Their stance dataset contains 4k tweets, aimed towards topics such as Hillary Clinton, Atheism and etc. In addition,
 \cite{yang2015twitter} provides an insight into measuring emotional contagion in Social Media. By using SentiStrengh (a sentiment analysis program),
@@ -336,11 +339,11 @@ Finally, the provide noteworthy limitations of observational experiments.
 
 %\cite{yang2015twitter}
 \subsection{Emoji Prediction:}
-It is now worth mentioning previous work on Emoji Prediction. \cite{SemEval2018Task2} offered 2 subtasks for multilingual-emoji prediction: English and Spanish. By using Twitter API,
+It is now worth mentioning previous work on Emoji Prediction. \cite{barbieri-etal-2018-semeval} offered 2 subtasks for multilingual-emoji prediction: English and Spanish. By using Twitter API,
 they located tweets either in the US (600k total) or in Spain (120k total). The tweets only included the one's with a single emoji and where limited to the top 20 emojis used across those countries. \cite{Tubingen Olso} achieved 
 the best performance in both the English and Spanish Tweets: F1-Score: 35.99 \%, F1-Score: 22.36 \% respectively obtained by an SVM classifier with bag-of-n-grams features. One of the best performing teams 
-\cite{NTUA-SLP}, achieved an F1-score of 35.36 \% on the English tweets, by using LSTM architecture with attention mechanism, initializing the embedding layer with word2vec and training end-to-end with back-propagation. 
-The preprocessing tool they used was ekprahsis \cite{Baziotis} which contains social tokenizer aimed for social media, spell correction and word segmentation which can be used for hashtag segmentation. Finally, \cite{towards understanding creatieve lang}
+\cite{baziotis-etal-2018-ntua-slp}, achieved an F1-score of 35.36 \% on the English tweets, by using LSTM architecture with attention mechanism, initializing the embedding layer with word2vec and training end-to-end with back-propagation. 
+The preprocessing tool they used was ekprahsis \cite{baziotis-etal-2017-datastories-semeval} which contains social tokenizer aimed for social media, spell correction and word segmentation which can be used for hashtag segmentation. Finally, \cite{towards understanding creatieve lang}
 explores both Irony Detection and the Emoji Prediction Task. They highlight that the knowledge the models gain is entirely from the corresponding training data, such training mechanism may work well for traditional text genres with formal sentences; however; 
 it usually achieves an unsatisfiable performance with informal text, such as social media text.  By adopting a transfer learning model based on pretrained-BERT they achieved an F1-Score of 38.52 \% on the Emoji Prediction task. Issues raised by the authors were: overfitting 
 due to the lack of more training data to fine-tune the system and time complexity.  
@@ -350,7 +353,7 @@ due to the lack of more training data to fine-tune the system and time complexit
 -Accuracies for BERT model with different hyper parameters and benchmarks 
 -Twitter Corona a graph similar to what I did with the nvidia sent but for the emoji's top 10 
 -Figure for correlation between plutchik wheel and emoji (the one you posted on github)
--Spatial distribution of the dataset 
+-Spatial distribution of the dataset  
 
 %\bibliographystyle{coling}
 \bibliographystyle{plainnat}

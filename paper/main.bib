@@ -69,12 +69,14 @@ url={https://openreview.net/forum?id=HJeT3yrtDr}
   publisher={Taylor \& Francis}
 }
 
-@InProceedings{SemEval2018Task1,
- author = {Mohammad, Saif M. and Bravo-Marquez, Felipe and Salameh, Mohammad and Kiritchenko, Svetlana},
- title = {SemEval-2018 {T}ask 1: {A}ffect in Tweets},
- booktitle = {Proceedings of International Workshop on Semantic Evaluation (SemEval-2018)},
- address = {New Orleans, LA, USA},
- year = {2018}} 
+
+
+@unpublished{spacy2,
+    AUTHOR = {Honnibal, Matthew and Montani, Ines},
+    TITLE  = {{spaCy 2}: Natural language understanding with {B}loom embeddings, convolutional neural networks and incremental parsing},
+    YEAR   = {2017},
+    Note   = {To appear}
+}
 
 
 @techreport{oard1998survey,
@@ -82,6 +84,9 @@ url={https://openreview.net/forum?id=HJeT3yrtDr}
   author={Oard, Douglas W and Dorr, Bonnie J},
   year={1998}
 }
+
+
+
 
 @article{rupnik2016news,
   title={News across languages-cross-lingual document similarity and event tracking},
@@ -172,3 +177,95 @@ url={https://openreview.net/forum?id=HJeT3yrtDr}
   year={2020},
   publisher={JMIR Publications Inc., Toronto, Canada}
 }
+
+@inproceedings{barbieri-etal-2018-semeval,
+    title = "{S}em{E}val 2018 Task 2: Multilingual Emoji Prediction",
+    author = "Barbieri, Francesco  and
+      Camacho-Collados, Jose  and
+      Ronzano, Francesco  and
+      Espinosa-Anke, Luis  and
+      Ballesteros, Miguel  and
+      Basile, Valerio  and
+      Patti, Viviana  and
+      Saggion, Horacio",
+    booktitle = "Proceedings of The 12th International Workshop on Semantic Evaluation",
+    month = jun,
+    year = "2018",
+    address = "New Orleans, Louisiana",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/S18-1003",
+    doi = "10.18653/v1/S18-1003",
+    pages = "24--33",
+    abstract = "This paper describes the results of the first Shared Task on Multilingual Emoji Prediction, organized as part of SemEval 2018. Given the text of a tweet, the task consists of predicting the most likely emoji to be used along such tweet. Two subtasks were proposed, one for English and one for Spanish, and participants were allowed to submit a system run to one or both subtasks. In total, 49 teams participated to the English subtask and 22 teams submitted a system run to the Spanish subtask. Evaluation was carried out emoji-wise, and the final ranking was based on macro F-Score. Data and further information about this task can be found at \url{https://competitions.codalab.org/competitions/17344}.",
+}
+
+@inproceedings{coltekin-etal-2018-tubingen,
+    title = {T{\"u}bingen-Oslo Team at the {V}ar{D}ial 2018 Evaluation Campaign: An Analysis of N-gram Features in Language Variety Identification},
+    author = {{\c{C}}{\"o}ltekin, {\c{C}}a{\u{g}}r{\i}  and
+      Rama, Taraka  and
+      Blaschke, Verena},
+    booktitle = "Proceedings of the Fifth Workshop on {NLP} for Similar Languages, Varieties and Dialects ({V}ar{D}ial 2018)",
+    month = aug,
+    year = "2018",
+    address = "Santa Fe, New Mexico, USA",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/W18-3906",
+    pages = "55--65",
+    abstract = "This paper describes our systems for the VarDial 2018 evaluation campaign. We participated in all language identification tasks, namely, Arabic dialect identification (ADI), German dialect identification (GDI), discriminating between Dutch and Flemish in Subtitles (DFS), and Indo-Aryan Language Identification (ILI). In all of the tasks, we only used textual transcripts (not using audio features for ADI). We submitted system runs based on support vector machine classifiers (SVMs) with bag of character and word n-grams as features, and gated bidirectional recurrent neural networks (RNNs) using units of characters and words. Our SVM models outperformed our RNN models in all tasks, obtaining the first place on the DFS task, third place on the ADI task, and second place on others according to the official rankings. As well as describing the models we used in the shared task participation, we present an analysis of the n-gram features used by the SVM models in each task, and also report additional results (that were run after the official competition deadline) on the GDI surprise dialect track.",
+}
+
+@inproceedings{baziotis-etal-2018-ntua-slp,
+    title = "{NTUA}-{SLP} at {S}em{E}val-2018 Task 2: Predicting Emojis using {RNN}s with Context-aware Attention",
+    author = "Baziotis, Christos  and
+      Nikolaos, Athanasiou  and
+      Kolovou, Athanasia  and
+      Paraskevopoulos, Georgios  and
+      Ellinas, Nikolaos  and
+      Potamianos, Alexandros",
+    booktitle = "Proceedings of The 12th International Workshop on Semantic Evaluation",
+    month = jun,
+    year = "2018",
+    address = "New Orleans, Louisiana",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/S18-1069",
+    doi = "10.18653/v1/S18-1069",
+    pages = "438--444",
+    abstract = "In this paper we present a deep-learning model that competed at SemEval-2018 Task 2 {``}Multilingual Emoji Prediction{''}. We participated in subtask A, in which we are called to predict the most likely associated emoji in English tweets. The proposed architecture relies on a Long Short-Term Memory network, augmented with an attention mechanism, that conditions the weight of each word, on a {``}context vector{''} which is taken as the aggregation of a tweet{'}s meaning. Moreover, we initialize the embedding layer of our model, with word2vec word embeddings, pretrained on a dataset of 550 million English tweets. Finally, our model does not rely on hand-crafted features or lexicons and is trained end-to-end with back-propagation. We ranked 2nd out of 48 teams.",
+}
+
+
+@article{mohammad2016stance,
+    title={Stance and Sentiment in Tweets},
+    author={Saif M. Mohammad and Parinaz Sobhani and Svetlana Kiritchenko},
+    year={2016},
+    eprint={1605.01655},
+    archivePrefix={arXiv},
+    primaryClass={cs.CL}
+}
+
+
+@inproceedings{mohammad-etal-2018-semeval,
+    title = "{S}em{E}val-2018 Task 1: Affect in Tweets",
+    author = "Mohammad, Saif  and
+      Bravo-Marquez, Felipe  and
+      Salameh, Mohammad  and
+      Kiritchenko, Svetlana",
+    booktitle = "Proceedings of The 12th International Workshop on Semantic Evaluation",
+    month = jun,
+    year = "2018",
+    address = "New Orleans, Louisiana",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/S18-1001",
+    doi = "10.18653/v1/S18-1001",
+    pages = "1--17",
+    abstract = "We present the SemEval-2018 Task 1: Affect in Tweets, which includes an array of subtasks on inferring the affectual state of a person from their tweet. For each task, we created labeled data from English, Arabic, and Spanish tweets. The individual tasks are: 1. emotion intensity regression, 2. emotion intensity ordinal classification, 3. valence (sentiment) regression, 4. valence ordinal classification, and 5. emotion classification. Seventy-five teams (about 200 team members) participated in the shared task. We summarize the methods, resources, and tools used by the participating teams, with a focus on the techniques and resources that are particularly useful. We also analyze systems for consistent bias towards a particular race or gender. The data is made freely available to further improve our understanding of how people convey emotions through language.",
+}
+
+
+@InProceedings{SemEval2018Task1,
+ author = {Mohammad, Saif M. and Bravo-Marquez, Felipe and Salameh, Mohammad and Kiritchenko, Svetlana},
+ title = {SemEval-2018 {T}ask 1: {A}ffect in Tweets},
+ booktitle = {Proceedings of International Workshop on Semantic Evaluation (SemEval-2018)},
+ address = {New Orleans, LA, USA},
+ year = {2018}} 
+
