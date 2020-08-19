@@ -22,6 +22,7 @@
   citecolor    = blue  %Colour of citations
 }
 \usepackage{CJKutf8}
+\usepackage{subfig}
 \usepackage[sort&compress,round,comma,authoryear]{natbib}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -34,7 +35,7 @@
 \newcommand{\TEXT}{\texttt{text}}
 
 \newcommand{\defn}[1]{\emph{{#1}}}
-\newcommand{\fixme}[1]{\textbf{FIXME: {#1}}}
+\newcommand{\fixme}[1]{{\color{red} \textbf{FIXME:} {\textit {#1}}}}
 \newcommand{\XXX}{\textbf{XXX}~}
 
 \DeclareMathOperator*{\argmax}{arg\,max}
@@ -250,7 +251,7 @@ and any duplicate tweets were removed.
 Then we preprocessed each tweet by replacing all user mentions with a special token \texttt{<mention>} and all URLs with a special token \texttt{<url>} and deleting all emojis.
 We decided to keep all hashtags because hashtags can contain potentially valuable emotional content.
 There exist a lot of tweets that contain multiple repetitions of emojis.
-We address the issue similarly to how \cite{100 million tweets} did where for each unique emoji we have a separate tweet with that emoji as a label. 
+We address the issue similarly to how \cite{100_million_tweets} did where for each unique emoji we have a separate tweet with that emoji as a label. 
 For tweets containing repetitions of the same emoji; we only save one instance of it.
 Finally, each tweet is labelled with the emojis that were deleted from the tweet.
 In total, the $\emoticon$ dataset contains 64.2 million tweets sent by 4.2 million users,
@@ -323,7 +324,8 @@ Both models were warm-started from previous runs and the batch size used was 64.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\textwidth]{images/TOP15EMOJIPERF.pdf}
+    \fixme{image not included in repo.}
+    %\includegraphics[width=\textwidth]{images/TOP15EMOJIPERF.pdf}
     \caption{F1-score performance on the top 15 performing emojis out of the 80 emojis trained. 
     \textbf{BERTmoji L.L} is the model where the last layer is trained. \textbf{BERTmoji} is the fully trained model.}
     \label{fig:tweets_per_day}
@@ -341,7 +343,8 @@ both figures highlight that  \textbf{BERTmoji} outperforms \textbf{BERTmoji L.L}
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\textwidth]{images/TOP15LANGPERF.pdf}
+    \fixme{image not included in repo.}
+    %\includegraphics[width=\textwidth]{images/TOP15LANGPERF.pdf}
     \caption{F1-score performance on the top 15 languages in the $\emoticon$ based on the number of tweets for each language.
     \textbf{BERTmoji L.L} is the model where the last layer is trained. \textbf{BERTmoji} is the fully trained model.}
     \label{fig:tweets_per_day}
@@ -356,7 +359,8 @@ The results are shown in Figure 6.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\textwidth]{images/PREDICTMOJI.pdf}
+    \fixme{image not included in repo.}
+    %\includegraphics[width=\textwidth]{images/PREDICTMOJI.pdf}
     \caption{The table first column presents the top 10 languages of our $\emoticon$; 
     the second column includes the sliding window interpretations of the translations from the original English sentence performed with Google Translate;
     the third column shows the resulting top 5 emojis \textbf{BERTmoji} generated.
@@ -370,7 +374,7 @@ Since the Covid-19 outbreak, Twitter has become more than ever the place for par
 sharing opinions, and expressing thoughts. All of the preceding, are always charged with some type of sentiment.
 While there exist a plethora of models that engage in sentiment analysis, the barrier of language prevents a lot 
 of twitter data from being used,trained and analyzed. We however are able to circumvent that obstacle with the use of emojis.
-\cite{CAN EMOTICONS BE USED TO PREDICT SENTIMENT?} shows promising results that emoticons can be used to predict sentiment. 
+\cite{CAN_EMOTICONS_BE_USED_TO_PREDICT_SENTIMENT} shows promising results that emoticons can be used to predict sentiment. 
 While the relation between emojis and sentiment has not been studied thoroughly we aim to highlight that connection and 
 provoke interest in the subject.
 
@@ -378,7 +382,8 @@ provoke interest in the subject.
     \centering
     \subfloat{{\includegraphics[scale=0.14]{images/Plutchik-wheel.png}}}%
     \label{adsad}
-    \subfloat{{\includegraphics[scale= 0.79]{images/PLUTCHIKWHEEL.pdf}}}%
+    \fixme{image not included in repo.}
+    %\subfloat{{\includegraphics[scale= 0.79]{images/PLUTCHIKWHEEL.pdf}}}%
     \caption{Left: The Plutchik wheel of emotions: \url{https://en.wikipedia.org/wiki/Robert_Plutchik}.Right: The 10 different categories of emojis we have split our dataset into. 8 of them are from the Plutchik wheel of emotions, 1 contains other miscellanea emojis and the last contains only the mask emoji}%
     \label{fig:example}%
 \end{figure}
@@ -403,7 +408,8 @@ We show are results in Figure X.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\textwidth]{images/corona_dataset_graph.pdf}
+    \fixme{image not included in repo.}
+    %\includegraphics[width=\textwidth]{images/corona_dataset_graph.pdf}
     \caption{The graph presents a bar plot of the number of tweets per day contained in the $\corona$ dataset;
     a line plot for the 8 different emotions from the Plutchik wheel: joy, anticipation,anger, and for the use of the mask emoji.
     We also include some of the important timelines of COVID-19:100 thousand,1 million,10 million cases alongside with some of the W.H.O responses}
@@ -434,7 +440,7 @@ improves performance for both Transformers and mLSTM.
 %\cite{kant2018practical}
 
 \subsection{Examples of large scale sentiment analysis:}
-\cite{mohammad2016stance} explores both stance and sentiment analysis by providing a dataset of annotated tweet-target pairs, organized
+\cite{mohammad2017stance} explores both stance and sentiment analysis by providing a dataset of annotated tweet-target pairs, organized
 a shared Task competition on Stance. Their stance detection system achieved an F-score of 70.3 \%, where they utilized an linear-kernel
 SVM classifier. Their stance dataset contains 4k tweets, aimed towards topics such as Hillary Clinton, Atheism and etc. In addition,
 \cite{yang2015twitter} provides an insight into measuring emotional contagion in Social Media. By using SentiStrengh (a sentiment analysis program),
@@ -450,10 +456,10 @@ Finally, the provide noteworthy limitations of observational experiments.
 %\cite{yang2015twitter}
 \subsection{Emoji Prediction:}
 It is now worth mentioning previous work on Emoji Prediction. \cite{barbieri-etal-2018-semeval} offered 2 subtasks for multilingual-emoji prediction: English and Spanish. By using Twitter API,
-they located tweets either in the US (600k total) or in Spain (120k total). The tweets only included the one's with a single emoji and where limited to the top 20 emojis used across those countries. \cite{Tubingen Olso} achieved 
+they located tweets either in the US (600k total) or in Spain (120k total). The tweets only included the one's with a single emoji and where limited to the top 20 emojis used across those countries. \cite{Tubingen_Olso} achieved 
 the best performance in both the English and Spanish Tweets: F1-Score: 35.99 \%, F1-Score: 22.36 \% respectively obtained by an SVM classifier with bag-of-n-grams features. One of the best performing teams 
 \cite{baziotis-etal-2018-ntua-slp}, achieved an F1-score of 35.36 \% on the English tweets, by using LSTM architecture with attention mechanism, initializing the embedding layer with word2vec and training end-to-end with back-propagation. 
-The preprocessing tool they used was ekprahsis \cite{baziotis-etal-2017-datastories-semeval} which contains social tokenizer aimed for social media, spell correction and word segmentation which can be used for hashtag segmentation. Finally, \cite{towards understanding creatieve lang}
+The preprocessing tool they used was ekprahsis \cite{baziotis-etal-2017-datastories-semeval} which contains social tokenizer aimed for social media, spell correction and word segmentation which can be used for hashtag segmentation. Finally, \cite{towards_understanding_creatieve_lang}
 explores both Irony Detection and the Emoji Prediction Task. They highlight that the knowledge the models gain is entirely from the corresponding training data, such training mechanism may work well for traditional text genres with formal sentences; however; 
 it usually achieves an unsatisfiable performance with informal text, such as social media text.  By adopting a transfer learning model based on pretrained-BERT they achieved an F1-Score of 38.52 \% on the Emoji Prediction task. Issues raised by the authors were: overfitting 
 due to the lack of more training data to fine-tune the system and time complexity.  
