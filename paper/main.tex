@@ -182,13 +182,15 @@ We include both languages in this filtering step because it is common for non-En
 Table \ref{table:lang} shows the 54 languages that are supported by all 3 services along with the total number of tweets in each language.
 Figure \ref{fig:tweets_per_day_sent} provides a summary of the number of tweets per day and Figure \ref{fig:corona:spatial} shows the spatial distribution of the tweets.
 
-
-\begin{figure}
+\begin{figure}%
     \centering
-    \includegraphics[height=2in]{images/dis_country.eps}
-    \caption{The spatial distribution of the $\emoticon$ dataset.}
-    \label{fig:corona:spatial}
+    \subfloat{{\includegraphics[scale=0.24]{images/dis_country.eps}}}%
+    \label{adsad}
+    \subfloat{{\includegraphics[scale =0.24]{images/dis_lang.eps} }}%
+    \caption{2 Figures side by side}%
+    \label{fig:example}%
 \end{figure}
+
 
 The other significant dataset of coronavirus related tweets is due to \citet{chen2020tracking}.
 There are two main differences between our dataset and theirs.
@@ -213,13 +215,6 @@ We used NVidia's \texttt{sentiment-discovery} library to provide a preliminary s
 and the results are shown in Figure \ref{fig:nvidia-sentiment}.
 The results are not very informative, however, because NVidia's model was trained on a small set of English-language tweets (about 16 thousand) about video games,
 and there is little reason to believe that this domain would transfer well to the coronavirus domain.
-
-\begin{figure}
-    \centering
-    \includegraphics[height=2in]{images/dis_lang.eps}
-    \caption{The language distribution of the $\emoticon$ dataset.} 
-    \label{table:lang}
-\end{figure}
 
 
 \subsection {The $\emoticon$ dataset}
@@ -266,19 +261,6 @@ and Figure \ref{fig:emoticons} shows the full list of emoticons and their counts
     \label{table:lang}
 \end{figure}
 
-
-
-
-%\begin{figure}%
-%    \centering
-%    \subfloat{{\includegraphics[scale=0.78]{images/emojitable.pdf}}}%
-%    \label{adsad}
-%    \subfloat{{\includegraphics[scale =0.21]{emoticonwheel.jpg} }}%
-%    \caption{2 Figures side by side}%
-%    \label{fig:example}%
-%\end{figure}
-
-
 Our goal with this dataset is to construct a classifier that takes as input a tweet and outputs an emoticon that represents the emotion of the tweet.
 In order to train this model properly,
 we carefully split the $\emoticon$ dataset into training, validation, and test sets ensuring that no user is present in all three sets in order to prevent data leakage.
@@ -295,7 +277,6 @@ On the other hand when dealing with the $\corona$ dataset,
 duplicate inputs result in some distribution on our outputs.
 Since we want to map out the public's emotional response to the coronavirus, it is important 
 for those distributions to be maintained.
-\fixme{Can you come up with an explanation about why this is good or bad?}
 
 \section{Experiments}
 \label{sec:experiments}
@@ -310,7 +291,15 @@ BERT is a new language representation model, which is aimed in pretraining deep 
 Therefore, the pre-trained model can be easily fine-tuned by adding another output layer.
 One of the reasons why we picked BERT is due to its performance on the General Language Understanding Evaluation (GLUE) \cite{} benchmark.
 It is comprised of nine language understanding tasks, assembled from a diverse dataset which includes insight into model performance with respect to a wide range of linguistic phenomena.
-At the time of writing, BERT and its variations hold a number of top achieving scores in the GLUE leaderboard \ref{leaderboard}.   
+At the time of writing, BERT and its variations hold a number of top achieving scores in the GLUE leader-board \ref{leaderboard}.   
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{images/F1_LANG_EMOJIS.pdf}
+    \caption{F1-score performance on the top 15 performing emojis out of the 80 emojis trained. 
+    \textbf{BERTmoji L.L} is the model where the last layer is trained. \textbf{BERTmoji} is the fully trained model.}
+    \label{fig:tweets_per_day}
+\end{figure}
 
 For our model, we utilized the pre-trained "bert-base-multilingual-uncased" which includes 102 languages and it is comprised of: 12-layer, 768-hidden, 12-head and 110M parameters.
 Therefore, we utilized the corresponding BERT tokenizer to encode our data.
@@ -322,15 +311,6 @@ When training the last layer of the model we used: a learning-rate of 1e-04, Ada
 While training all the layers of the model we had: a learning-rate of 1e-05, Adam optimizer and gradient clipping. 
 Both models were warm-started from previous runs and the batch size used was 64.
 
-\begin{figure}[ht]
-    \centering
-    \fixme{image not included in repo.}
-    %\includegraphics[width=\textwidth]{images/TOP15EMOJIPERF.pdf}
-    \caption{F1-score performance on the top 15 performing emojis out of the 80 emojis trained. 
-    \textbf{BERTmoji L.L} is the model where the last layer is trained. \textbf{BERTmoji} is the fully trained model.}
-    \label{fig:tweets_per_day}
-\end{figure}
-
 We now present the results of the models. We used the scikit-learn \cite{} library, to classify our models.
 We executed 2 classification for the two models. Initially we measured the f1-scores for all 80 emoji categories.
 The last-layer model had an F1-score of 15.89\% while the other one achieved an F1-score of 20.97\%. 
@@ -341,14 +321,16 @@ All the F1-scores are calculated via weighted average. Figure 3,4 presents more 
 While f1-scores vary for different emojis and languages,
 both figures highlight that  \textbf{BERTmoji} outperforms \textbf{BERTmoji L.L}. 
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
     \centering
-    \fixme{image not included in repo.}
-    %\includegraphics[width=\textwidth]{images/TOP15LANGPERF.pdf}
-    \caption{F1-score performance on the top 15 languages in the $\emoticon$ based on the number of tweets for each language.
-    \textbf{BERTmoji L.L} is the model where the last layer is trained. \textbf{BERTmoji} is the fully trained model.}
-    \label{fig:tweets_per_day}
+    \includegraphics[width=\textwidth]{images/PREDICTMOJI.pdf}
+    \caption{The table first column presents the top 10 languages of our $\emoticon$; 
+    the second column includes the sliding window interpretations of the translations from the original English sentence performed with Google Translate;
+    the third column shows the resulting top 5 emojis \textbf{BERTmoji} generated.
+     }
+    \label{fig:prediction_top10_langs}
 \end{figure}
+
 We now precede in testing \textbf{BERTmoji} ability to predict emojis for different languages.
 We decided on picking an English sentence that expressed emotions and could possibly appear in twitter,
 we then translated from English to the other nine languages from Figure 2 using Google Translate.
@@ -357,15 +339,13 @@ In addition, we also applied the sliding window algorithm to the translated sent
 in order to observe which words were more significant for the \textbf{BERTmoji} across the translations.
 The results are shown in Figure 6. 
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
     \centering
-    \fixme{image not included in repo.}
-    %\includegraphics[width=\textwidth]{images/PREDICTMOJI.pdf}
-    \caption{The table first column presents the top 10 languages of our $\emoticon$; 
-    the second column includes the sliding window interpretations of the translations from the original English sentence performed with Google Translate;
-    the third column shows the resulting top 5 emojis \textbf{BERTmoji} generated.
-     }
-    \label{fig:prediction_top10_langs}
+    \subfloat{{\includegraphics[scale=0.14]{images/Plutchik-wheel.png}}}%
+    \label{fig:plu_wheel}
+    \subfloat{{\includegraphics[scale= 0.79]{images/PLUTCHIKWHEEL.pdf}}}%
+    \caption{Left: The Plutchik wheel of emotions: \url{https://en.wikipedia.org/wiki/Robert_Plutchik}.Right: The 10 different categories of emojis we have split our dataset into. 8 of them are from the Plutchik wheel of emotions, 1 contains other miscellanea emojis and the last contains only the mask emoji}%
+    \label{fig:Mapped_emojis}%
 \end{figure}
 
 \subsection{Performance on $\corona$}
@@ -378,16 +358,21 @@ of twitter data from being used,trained and analyzed. We however are able to cir
 While the relation between emojis and sentiment has not been studied thoroughly we aim to highlight that connection and 
 provoke interest in the subject.
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
     \centering
-    \subfloat{{\includegraphics[scale=0.14]{images/Plutchik-wheel.png}}}%
-    \label{adsad}
-    \fixme{image not included in repo.}
-    %\subfloat{{\includegraphics[scale= 0.79]{images/PLUTCHIKWHEEL.pdf}}}%
-    \caption{Left: The Plutchik wheel of emotions: \url{https://en.wikipedia.org/wiki/Robert_Plutchik}.Right: The 10 different categories of emojis we have split our dataset into. 8 of them are from the Plutchik wheel of emotions, 1 contains other miscellanea emojis and the last contains only the mask emoji}%
-    \label{fig:example}%
+    \includegraphics[width=\textwidth]{images/corona_dataset_graph.pdf}
+    \caption{The graph presents a bar plot of the number of tweets per day contained in the $\corona$ dataset;
+    a line plot for the 8 different emotions from the Plutchik wheel: joy, anticipation,anger, and for the use of the mask emoji.
+    We also include some of the important timelines of COVID-19:100 thousand,1 million,10 million cases alongside with some of the W.H.O responses}
+    \label{fig:tweets_per_day_sent}
 \end{figure}
 
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth]{images/true_pred_rotated.pdf}
+    \caption{The true stacked bar presents the actual Plutchik wheel's mapped responses from the $\corona$ dataset while the predicted stacked bar graph presents the predicted emoji responses mapped to the Plutchik wheel following Figure  \ref{fig:Mapped_emojis} }
+    \label{fig:actual vs pred}
+\end{figure}
 
 We are going to use one of the most common sentiment classification tools which is the Plutchik's wheel of emotions.
 The classification \cite{} suggests 8 primary bipolar emotions: joy versus sadness; anger versus fear; trust versus disgust; 
@@ -398,23 +383,12 @@ At this point, it is important to mention that emojis are used in different ways
 therefore, their use in social media is a product of polysemy. We attempt to map them according with: their core definitions and
 our emoji use in social media. Table X shows the categories.  
 
-Due to the fact that emojis such as crying-face with tears, dominate the $\emoticon$ dataset (Table X),
+Due to the fact that emojis such as crying-face with tears, dominate the $\emoticon$ dataset,
 we allow the model to predict up to 5 unique emojis for one tweet, to promote more diversity among our results.
 This way, the results can be more meaningful. Further research, can include a more balanced $\emoticon$ dataset.
 We collect the 5 predicted emojis, and after mapping them to the correct sentiment category, we calculate their 
-percent out of the total number of emojis predicted for that day.
-We show are results in Figure X. 
-
-
-\begin{figure}[ht]
-    \centering
-    \fixme{image not included in repo.}
-    %\includegraphics[width=\textwidth]{images/corona_dataset_graph.pdf}
-    \caption{The graph presents a bar plot of the number of tweets per day contained in the $\corona$ dataset;
-    a line plot for the 8 different emotions from the Plutchik wheel: joy, anticipation,anger, and for the use of the mask emoji.
-    We also include some of the important timelines of COVID-19:100 thousand,1 million,10 million cases alongside with some of the W.H.O responses}
-    \label{fig:tweets_per_day_sent}
-\end{figure}
+percent out of the total number of emojis predicted for that day. 
+In order to understand the results we collected all the emojis from the tweets in the $\corona$ and mapped them to the categories in Figure \ref{fig:Mapped_emojis}.  
 
 
 \section{Related Work}
@@ -422,9 +396,7 @@ We show are results in Figure X.
 \subsection{Datasets:}
 It is now worth mentioning previous datasets related with sentiment and emotion classification. The Sentiment Evaluation task 2018 \cite{mohammad-etal-2018-semeval} presents a dataset of English, Arabic and Spanish tweets extracted from Twitter API, labelled for an array of subtasks on inferring the affectual state of a person from their tweet. Seventy-five teams submitted to one or more of the five total tasks; however, most of the submissions where for the language English. 
 \cite{liu2019dens} introduces the DENS dataset, for multi-class emotion analysis. By collecting both English classic literature and modern online narratives, and by fine-tuning the pre-trained uncased BERT-large model to the multi-class passage classification task they achieved a micro-F1 average score of 60.4\%.
-%\cite{liu2019dens}
 
-%\cite{SemEval2018Task1}
 \subsection{Pretrained models:}
 On the domain of Pre-trained models for Natural Language Tasks, NVIDIA's researchers have published 
 \cite{puri2018large} where by using Recurrent Neural Networks on a 40 GB Amazon Review dataset demonstrate 
@@ -435,9 +407,6 @@ with finetuning, provides a solution to the Multi-Emotion sentiment classificati
 including those with label class imbalance and domain-specific context. By training an attention-based
 transformer network on a Amazon 40 GB dataset, it outperforms the mLSTM model, while fine-tuning significantly 
 improves performance for both Transformers and mLSTM.
-%\cite{puri2018large}
-
-%\cite{kant2018practical}
 
 \subsection{Examples of large scale sentiment analysis:}
 \cite{mohammad2017stance} explores both stance and sentiment analysis by providing a dataset of annotated tweet-target pairs, organized
@@ -448,12 +417,7 @@ and the findings of a study which claims that individuals are more likely to ado
 their social network; the authors pursuit in establishing a relation between the sentiment of a tweet and that of the tweets that its author may have seen in a short
 time period preceding its posting. Interestingly, they raise ethical concerns as they require massive-scale content manipulation with unknown consequences for the individuals therein involved.
 Finally, the provide noteworthy limitations of observational experiments.
-%\cite{mohammad2015sentiment}
 
-%\cite{hemmatian2017survey}
-
-
-%\cite{yang2015twitter}
 \subsection{Emoji Prediction:}
 It is now worth mentioning previous work on Emoji Prediction. \cite{barbieri-etal-2018-semeval} offered 2 subtasks for multilingual-emoji prediction: English and Spanish. By using Twitter API,
 they located tweets either in the US (600k total) or in Spain (120k total). The tweets only included the one's with a single emoji and where limited to the top 20 emojis used across those countries. \cite{Tubingen_Olso} achieved 
