@@ -96,7 +96,7 @@
     This paper presents the first model for predicting emojis in multilingual text.
     Our $\bertmoji$ model is a fine-tuned version of the $\bert$ model which supports 104 different languages.
     We trained our $\bertmoji$ model on \XXX million geolocated tweets sent in the first 6 months of 2020,
-    and we apply the model to a case study analyzing coronavirus responses throughout the world.
+    and we apply the model to a case study analyzing coronavirus responses throughout the world. We were able to achieve an F1-score of 21 \% across the different languages and by applying this model to the coronavirus responses and mapping those emoji response to the Plutchik wheel; we tapped into the peoples' sentiment throughout the COVID-19 timeline. 
     \fixme{Add a 1 sentence summary of the results?}
 \end{abstract}
 
@@ -137,6 +137,25 @@
 \section{Introduction}
 \label{sec:intro}
 
+Emoji Prediction is the task of identifying the correct emoji from natural language data such as Tweets. Such task has already been explored by \cite{Zhang2019}, where by adopting a transfer model based on the pre-trained BERT model \cite{devlin2018bert}, they achieved an F1-score of 38.52 \% on enlgish tweets. Previous work includes \cite{barbieri-etal-2018-semeval}, which offered 2 sub-tasks for multilingual emoji-prediction: English and Spanish. While the top team \cite{coltekin-etal-2018-tubingen} achieved F1-scores of 35.99\% and 22.36\% for the two respective tasks; by using an SVM classifier with bag-of-n-grams, we believe that the multilingual aspect of emoji prediction is not met when only serving 2 languages.
+
+
+On the domain of Pre-trained models for Multi-lingual Natural Language Tasks, NVIDIA's researchers have published
+\cite{puri2018large} where by using Recurrent Neural Networks on a 40 GB Amazon Review dataset demonstrate 
+the scalability and transfer of the RNNs. By utilizing mixed precision arithmetic and 
+a 32k batch size distributed on 128 GPUs, they trained a character-level 4096-dimension mLSTM.
+Furthermore, \cite{kant2018practical} claim that large-scale unsupervised language modeling combined 
+with finetuning, provides a solution to the Multi-Emotion sentiment classification (Plutchik),
+including those with label class imbalance and domain-specific context. By training an attention-based
+transformer network on a Amazon 40 GB dataset, it outperforms the mLSTM model, while fine-tuning significantly 
+improves performance for both Transformers and mLSTM.
+
+A question that arises is in which way can the emoji prediction task aid further research. \cite{cates2018} and \cite{avyaz2017}  show promising results that emoticons can be used to predict sentiment. Analysis from \cite{avyaz2017} shows that the utilization of Emoji characters results in higher sentiment scores while \cite{cates2018} highlights promising results when trying to make the connection between emoticons and the sentiment of YouTube comments.  
+
+In the times that we are facing, exploring the public's sentiment offers useful insight into how people react to situations of stress, anxiety and uncertainty. A perfect source to explore this is through Twitter's API.\cite{subasish2020} draws from tweets related to Covid19 and India and by using public available sentiment analysis tools explores the public's sentiment on a two sentiment basis (negative and positive). 
+    
+
+
 {\color{blue} \lipsum[1-4] }
 
 \subsection{Contributions}
@@ -158,7 +177,7 @@
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{images/PREDICTMOJI.pdf}
+    \includegraphics[width=\textwidth]{images/languages_slide_fix.pdf}
     \caption{
         $\bertmoji$ predicts good emojis in a wide variety of languages.
         All non-English text above was translated from the English using Google Translate.
@@ -218,9 +237,8 @@ and Figure \ref{fig:emoticons} shows the full list of emoticons and their counts
 
 \begin{figure}
     \centering
-    %\includegraphics[scale = 1.2]{images/emojitable.pdf}
-    \includegraphics[height=2in]{example-image-a}
-    \caption{The emoji distribution of the $\emoticon$ dataset. \fixme{The image wasn't included in your repo.  I'm guessing how big it should be, but you should change this.}} 
+    \includegraphics[scale = 1.2]{images/emojitable.pdf}
+    \caption{The emoji distribution of the $\emoticon$ dataset.} 
     \label{table:lang}
 \end{figure}
 
@@ -254,9 +272,9 @@ At the time of writing, BERT and its variations hold a number of top achieving s
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{images/F1_LANG_EMOJIS.pdf}
+    \includegraphics[width=\textwidth]{images/f1_score_table_fix.pdf}
     \caption{
-        F1 scores of the $\bertmojill$ and $\bertmoji$ model on 15 selected emojis.
+        F1 scores of the $\bertmojill$ and $\bertmoji$ model on 15 selected emojis. Included also are the F1-score language breakdown. (The total is this the sum of averages, kind of showing how we go an f1 score of 21\%).
         %$\bertmojill$ is the model where the last layer is trained. $\bertmoji$ is the fully trained model.
         \fixme{numbers should be right aligned, text should be left aligned}
         \fixme{The typography of the bert models needs to match the typography used in the rest of the paper.}
@@ -299,7 +317,7 @@ The results are shown in Figure 6.
     \centering
     \subfloat{{\includegraphics[scale=0.14]{images/Plutchik-wheel.png}}}%
     \label{fig:plu_wheel}
-    \subfloat{{\includegraphics[scale= 0.79]{images/PLUTCHIKWHEEL.pdf}}}%
+    \subfloat{{\includegraphics[scale= 0.79]{images/emoji_categories_fix.pdf}}}%
     \caption{
         (\emph{Left}) 
         The Plutchik wheel of emotions.
@@ -381,7 +399,7 @@ Figure \ref{fig:tweets_per_day_sent} provides a summary of the number of tweets 
     \subfloat{{\includegraphics[scale=0.24]{images/dis_country.eps}}}%
     \label{adsad}
     \subfloat{{\includegraphics[scale =0.24]{images/dis_lang.eps} }}%
-    \caption{2 Figures side by side}%
+    \caption{ (\emph{Left}) The spatial distribution of the $\emoticon$ dataset. (\emph{Right}) The language distribution of the $\emoticon$ dataset.  }%
     \label{fig:example}%
 \end{figure}
 
@@ -419,13 +437,11 @@ Since the Covid-19 outbreak, Twitter has become more than ever the place for par
 sharing opinions, and expressing thoughts. All of the preceding, are always charged with some type of sentiment.
 While there exist a plethora of models that engage in sentiment analysis, the barrier of language prevents a lot 
 of twitter data from being used,trained and analyzed. We however are able to circumvent that obstacle with the use of emojis.
-\cite{CAN_EMOTICONS_BE_USED_TO_PREDICT_SENTIMENT} shows promising results that emoticons can be used to predict sentiment. 
-While the relation between emojis and sentiment has not been studied thoroughly we aim to highlight that connection and 
-provoke interest in the subject.
+
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth,height=2.5in]{images/corona_dataset_graph.pdf}
+    \includegraphics[width=\textwidth,height=2.5in]{images/twitter_graph_fix.pdf}
     \caption{
         The emotional content of tweets in the $\corona$ dataset changes over time and reacts to major news events.
         For example, when WHO declared a pandemic on $\XXX$, we can see that the amount of anticipation increases.
@@ -447,7 +463,7 @@ provoke interest in the subject.
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth,height=0.5in]{images/true_pred_rotated.pdf}
+    \includegraphics[width=\textwidth]{images/true_pred_fix.pdf}
     \caption{The true stacked bar presents the actual Plutchik wheel's mapped responses from the $\corona$ dataset while the predicted stacked bar graph presents the predicted emoji responses mapped to the Plutchik wheel following Figure  \ref{fig:Mapped_emojis} }
     \label{fig:actual vs pred}
 \end{figure}
