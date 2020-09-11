@@ -1,0 +1,346 @@
+\documentclass[a4paper, 11pt]{standalone}
+%\documentclass{article}
+%\documentclass[a4paper,landscape]{article}
+\usepackage{fontspec}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\newfontfamily{\NotoEmoji}
+  {NotoColorEmoji.ttf}[Renderer=Harfbuzz]
+\newfontfamily{\SymbolaEmoji}{Symbola}
+
+
+\begin{document}
+
+\scalebox{1.5}{
+\begin{tabular}{ l|r r r r r r r r r r r r r r r|r } 
+& \Large\NotoEmoji\symbol{"1F602} &  \Large\NotoEmoji\symbol{"1F603} & \Large\NotoEmoji\symbol{"1F605} & \Large\NotoEmoji\symbol{"1F60D} & \Large\NotoEmoji\symbol{"1F60E} & \Large\NotoEmoji\symbol{"1F60B} & \Large\NotoEmoji\symbol{"1F60A} & \Large\NotoEmoji\symbol{"1F614} & \Large\NotoEmoji\symbol{"1F618} &  \Large\NotoEmoji\symbol{"1F620} &  \Large\NotoEmoji\symbol{"1F62D} & \Large\NotoEmoji\symbol{"1F634} & \Large\NotoEmoji\symbol{"1F637} &  \Large\NotoEmoji\symbol{"1F644} & \Large\NotoEmoji\symbol{"1F64F}  & 
+Total F1-Score  \\
+
+\texttt{BERTmoticon-LL}
+& 0.440 &
+0.100 &
+0.075 &
+0.190 &
+0.037 &
+0.111 &
+0.185 &
+0.008 &
+0.111 &
+0.011 &
+0.111 &
+0.018 &
+0.049 &
+0.007 &
+0.226 &
+0.159 
+ \\ 
+ 
+\texttt{BERTmoticon} &\textbf{0.479} &
+\textbf{0.157} &
+\textbf{0.119} &
+\textbf{0.309} &
+\textbf{0.052} &
+\textbf{0.211} &
+\textbf{0.244} &
+\textbf{0.078} &
+\textbf{0.249} &
+\textbf{0.073} &
+\textbf{0.256} &
+\textbf{0.215} &
+\textbf{0.106} &
+\textbf{0.035} &
+\textbf{0.361} & 
+\textbf{0.210}
+ \\ 
+ \hline
+\texttt{BERTmoticon} English &
+0.506 &
+0.000 &
+0.000 &
+0.295 &
+0.076 &
+0.201 &
+0.230 &
+0.034 &
+0.241 &
+0.031 &
+0.235 &
+0.160 &
+0.128 &
+0.006 &
+0.367 &
+0.221 
+ \\ 
+ \hline
+\texttt{BERTmoticon} Undefined &
+0.485 &
+0.000 &
+0.000 &
+0.127 &
+0.029 &
+0.030 &
+0.010 &
+0.008 &
+0.012 &
+0.003 &
+0.042 &
+0.083 &
+0.041 &
+0.000 &
+0.103 &
+0.171 
+ \\ 
+ \hline
+\texttt{BERTmoticon}  Portuguese &
+0.380 &
+0.000 &
+0.000 &
+0.426 &
+0.058 &
+0.310 &
+0.004 &
+0.155 &
+0.128 &
+0.183 &
+0.249 &
+0.294 &
+0.092 &
+0.110 &
+0.340 &
+0.177
+ \\ 
+ \hline
+\texttt{BERTmoticon}  Spanish &
+0.388 &
+0.000 &
+0.000 &
+0.381 &
+0.065 &
+0.183 &
+0.090 &
+0.087 &
+0.423 &
+0.073 &
+0.254 &
+0.185 &
+0.142 &
+0.065 &
+0.305 &
+0.170
+ \\ 
+ \hline
+\texttt{BERTmoticon} Japanese &
+0.115 &
+0.259 &
+0.241 &
+0.199 &
+0.003 &
+0.323 &
+0.336 &
+0.000 &
+0.003 &
+0.055 &
+0.223 &
+0.268 &
+0.137 &
+0.004 &
+0.142 &
+0.133 
+ \\
+ \hline
+\texttt{BERTmoticon} Indonesian &
+0.442 &
+0.000 &
+0.000 &
+0.188 &
+0.026 &
+0.053 &
+0.065 &
+0.002 &
+0.218 &
+0.027 &
+0.393 &
+0.073 &
+0.036 &
+0.001 &
+0.339 &
+0.203
+ \\
+ \hline
+\texttt{BERTmoticon}  Arabic &
+0.637 &
+0.000 &
+0.000 &
+0.224 &
+0.000 &
+0.000 &
+0.000 &
+0.006 &
+0.002 &
+0.000 &
+0.117 &
+0.064 &
+0.000 & 
+0.000 &
+0.268 &
+0.319
+ \\
+ \hline
+\texttt{BERTmoticon} Tagalog &
+0.509 &
+0.000 &
+0.001 &
+0.247 &
+0.018 &
+0.070 &
+0.051 &
+0.035 &
+0.174 &
+0.002 &
+0.293 &
+0.154 &
+0.035 &
+0.019 &
+0.225 &
+0.208
+ \\
+ \hline
+\texttt{BERTmoticon}  Turkish &
+0.469 &
+0.000 &
+0.000 &
+0.132 &
+0.015 &
+0.055 &
+0.121 &
+0.059 &
+0.085 &
+0.003 &
+0.118 &
+0.023 &
+0.036 &
+0.002 &
+0.392 &
+0.174
+
+ \\
+ \hline
+\texttt{BERTmoticon}  French &
+0.418 &
+0.000 &
+0.000 &
+0.227 &
+0.017 &
+0.056 &
+0.109 &
+0.010 &
+0.414 &
+0.008 &
+0.356 &
+0.083 &
+0.180 &
+0.004 &
+0.196 &
+0.208
+ \\
+ \hline
+\texttt{BERTmoticon}  Hindi &
+0.443 &
+0.000 &
+0.000 &
+0.103 &
+0.004 &
+0.016 &
+0.007 &
+0.002 &
+0.027 &
+0.010 &
+0.067 &
+0.025 &
+0.010 &
+0.000 &
+0.717 &
+0.310
+ \\
+ \hline
+\texttt{BERTmoticon}  Thai &
+0.271 &
+0.000 &
+0.000 &
+0.124 &
+0.003 &
+0.023 &
+0.042 &
+0.000 &
+0.012 &
+0.000 &
+0.208 &
+0.009 &
+0.012 &
+0.000 &
+0.022 &
+0.078
+ \\
+ \hline
+\texttt{BERTmoticon}  Italian &
+0.430 &
+0.000 &
+0.000 &
+0.273 &
+0.033 &
+0.220 &
+0.205 &
+0.031 &
+0.439 &
+0.071 &
+0.144 &
+0.168 &
+0.074 &
+0.007 &
+0.119 &
+0.181
+ \\
+ \hline
+\texttt{BERTmoticon}   Dutch &
+0.371 &
+0.000 &
+0.000 &
+0.141 &
+0.047 &
+0.027 &
+0.225 &
+0.004 &
+0.364 &
+0.006 &
+0.149 &
+0.068 &
+0.055 &
+0.000 &
+0.201 &
+0.168
+ \\
+ \hline
+\texttt{BERTmoticon} Russian &
+0.375 &
+0.000 &
+0.000 &
+0.267 &
+0.009 &
+0.000 &
+0.028 &
+0.000 &
+0.249 &
+0.000 &
+0.248 &
+0.000 &
+0.000 &
+0.000 &
+0.044 &
+0.122 
+ \\
+\end{tabular}}
+
+
+\end{document}
