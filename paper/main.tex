@@ -196,7 +196,7 @@ and the appropriate emoji to use requires a good understanding of context and do
 \begin{figure}
     \centering
     %\includegraphics[width=\textwidth]{images/languages_slide_fix.pdf}
-    \includegraphics[height=3in]{images/languages_slide_fix.pdf}
+    \includegraphics[height=3in]{images/table_fixed.pdf}
     \caption{
         $\bertmoji$ predicts good emojis in a wide variety of languages.
         All non-English text above was translated from the English using Google Translate.
@@ -309,9 +309,9 @@ We take particular care to ensure that the $\emoticon$ dataset is sampled from a
 
 \begin{figure}
     \centering
-    \subfloat{{\includegraphics[scale=0.14]{images/Plutchik-wheel.png}}}%
+    \subfloat{{\includegraphics[scale=0.125]{images/Plutchik-wheel.png}}}%
     \label{fig:plu_wheel}
-    \subfloat{{\includegraphics[scale= 0.79]{images/emoji_categories_fix.pdf}}}%
+    \subfloat{{\includegraphics[scale= 0.78]{images/categories_fixed.pdf}}}%
     \caption{
         (\emph{Left}) 
         The Plutchik wheel of emotions.
@@ -384,9 +384,9 @@ we present the Plutchnik wheel emotions only as a more easily-digestible summary
 
 \begin{figure}%
     \centering
-    \subfloat{{\includegraphics[scale=0.24]{images/dis_country.eps}}}%
+    \subfloat{{\includegraphics[scale=0.21]{images/dis_country_fixed.eps}}}%
     \label{adsad}
-    \subfloat{{\includegraphics[scale =0.24]{images/dis_lang.eps} }}%
+    \subfloat{{\includegraphics[scale =0.21]{images/dis_lang_fix.eps} }}%
     \caption{ 
         Stats on the most common countries of origin (\emph{left}) and languages (\emph{right}) for tweets in the $\emoticon$ dataset.
         Languages are determined using Twitter's API, which has official support for \XXX languages.
@@ -447,7 +447,7 @@ with each instance being labeled by a single one of the emoticons.
 \begin{figure}
     \centering
     %\includegraphics[scale = 1.2]{images/emojitable.pdf}
-    \includegraphics[height=2in]{images/emojitable.pdf}
+    \includegraphics[width = \textwidth,height=1.3in]{images/emoji_table_fix.pdf}
     \caption{
         The emoji distribution of the $\emoticon$ dataset.
         \fixme{All numbers must have either 4 or 5 decimals.  For example 0.02 should be 0.0200}
@@ -585,7 +585,7 @@ We include both languages in this filtering step because it is common for non-En
 
 \begin{figure}
     \centering
-    \includegraphics[height=0.5in]{images/true_pred_fix.pdf}
+    \includegraphics[height=0.6in,width =\textwidth]{images/true_pred_fixed.pdf}
     \caption{
         The true stacked bar presents the actual Plutchik wheel's mapped responses from the $\corona$ dataset while the predicted stacked bar graph presents the predicted emoji responses mapped to the Plutchik wheel following Figure  \ref{fig:Mapped_emojis} 
         \fixme{The labels should not be rotated.}
@@ -647,7 +647,7 @@ Capturing as many non-English tweets as possible about the coronavirus is import
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth,height=2.5in]{images/twitter_graph_fix.pdf}
+    \includegraphics[width=\textwidth,height=2.5in]{images/twitter_graph_fixed.pdf}
     \caption{
         The emotional content of tweets in the $\corona$ dataset changes over time and reacts to major news events.
         The shaded bar plot in the background shows the total number of tweets in the $\corona$ dataset sent on a particular day,
