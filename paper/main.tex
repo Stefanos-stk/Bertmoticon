@@ -23,6 +23,9 @@
 \usepackage{graphicx}
 \usepackage[inline]{enumitem}
 
+\usepackage{graphicx}
+\usepackage{grffile}
+
 \usepackage{csquotes}
 \renewcommand{\mkbegdispquote}[2]{\itshape}
 
@@ -45,7 +48,8 @@
 \newcommand{\bert}{\text{multilingual BERT}}
 \newcommand{\spacy}{\texttt{spaCy}}
 
-\newcommand{\emoji}[1]{\includegraphics[height=\fontcharht\font`\B]{images/{#1}}}
+
+\newcommand{\emoji}[1]{\includegraphics[height=\fontcharht\font`\B]{./images/#1}}
 %\newcommand{\emoji}[1]{\includegraphics[height=0.8em,trim=0 0.3em 0 -0.3em]{images/{#1}}}
 %\newcommand{\emoji}[1]{${}_{\includegraphics[height=\fontcharht\font`\B]{images/{#1}}}$}
 
@@ -74,7 +78,7 @@
 
 
 %\title{$\bertmoji$ says: "wear a mask" :  \includegraphics[scale=0.07]{images/mask_photo.png}}
-\title{Multilingual Emoticon Prediction of Tweets about COVID-19 \emoji{mask_photo.png}}
+\title{Multilingual Emoticon Prediction of Tweets about COVID-19 \emoji{mask_photo.png} }
 
 \author{First Author \\
   Affiliation / Address line 1 \\
@@ -188,7 +192,7 @@ The goal of this paper is to automatically annotate these emoji-less tweets with
 \begin{figure}
     \centering
     %\includegraphics[width=\textwidth]{images/languages_slide_fix.pdf}
-    \includegraphics[height=3in]{images/table_fixed.pdf}
+    \includegraphics[height=3in]{images/translations_fixed.pdf}
     \caption{
         $\bertmoji$ predicts good emojis in a wide variety of languages.
         All non-English text above was translated from the English using Google Translate.
@@ -312,7 +316,7 @@ Specifically, we focus on the original 80 emoji defined in the Unicode standard'
     By these definitions, an \defn{emoji} is any one of 3304 pictographs that are not part of any written language,
     and an \defn{emoticon} is one of the original 80 emoji defined in the code block specified above.
 %}
-We limit are analysis to emoticons for three reasons.
+We limit our analysis to emoticons for three reasons.
 First, they are the most commonly used emoji on twitter,
 so we can expect to achieve relatively high accuracy.
 Second, each emoticon represents an emotion (emoticon is a portmanteau of emotion and icon).
@@ -345,9 +349,9 @@ but we present the mapping onto the Plutchnik wheel emotions to help make the wi
 
 \begin{figure}%
     \centering
-    \subfloat{{\includegraphics[scale=0.21]{images/dis_country_fixed.eps}}}%
+    \subfloat{{\includegraphics[scale=0.21]{images/countries_fixed.eps}}}%
     \label{adsad}
-    \subfloat{{\includegraphics[scale =0.21]{images/dis_lang_fix.eps} }}%
+    \subfloat{{\includegraphics[scale =0.21]{images/languages_fixed.eps} }}%
     \caption{ 
         Stats on the most common countries of origin (\emph{left}) and languages (\emph{right}) for tweets in the $\emoticon$ dataset.
         Languages are determined using Twitter's API, which has official support for 66 languages.
@@ -655,7 +659,7 @@ In total, 2.6 million tweets meet the criteria to be included in the $\corona$ d
 
 \begin{figure}
     \centering
-    \includegraphics[height=0.6in,width =\textwidth]{images/true_pred_fixed.pdf}
+    \includegraphics[height=0.6in,width =\textwidth]{images/truevspred_fix.pdf}
     \caption{
         (\emph{top}) The distribution of emotions in the subset of $\corona$ that contain emojis.
         (\emph{bottom}) The distribution of emotions in the subset of $\corona$ that did not contain emojis, and that we used $\bertmoji$ to assign predictions for.
@@ -682,7 +686,7 @@ Chinese tweets, for example, commonly refer to COVID-19 with the string
 病毒
 \end{CJK},
 and Chinese-language tweets containing this string will get included in our dataset but not in their dataset.
-As a result of this more advanced processing, the fraction of non-English tweets is much larger in our dataset than theirs (\XXX versus 38\%).
+As a result of this more advanced processing, the fraction of non-English tweets is much larger in our dataset than theirs (48\% versus 38\%).
 Capturing as many non-English tweets as possible about COVID-19 is important for ensuring that our analysis is not unfairly skewed towards English-speaking countries.
 %Again, this improves our multicultural analysis in Section \ref{sec:}.
 
@@ -703,7 +707,7 @@ Capturing as many non-English tweets as possible about COVID-19 is important for
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth,height=2.5in]{images/twitter_graph_fixed.pdf}
+    \includegraphics[width=\textwidth,height=2.5in]{images/twitter_sentiment_fixed.pdf}
     \caption{
         The emotional content of tweets in the $\corona$ dataset changes over time and reacts to major news events.
         The shaded bar plot in the background shows the total number of tweets in the $\corona$ dataset sent on a particular day (left y-axis scale),
@@ -716,7 +720,7 @@ Capturing as many non-English tweets as possible about COVID-19 is important for
     \label{fig:tweets_per_day_sent}
 \end{figure}
 
-Only $\XXX$ percent of tweets in the $\corona$ dataset contain an emoticon.
+Only 15.11\% percent of tweets in the $\corona$ dataset contain an emoticon.
 We used the $\bertmoji$ model to label the remaining tweets.
 Figure \ref{fig:actual_vs_pred} shows the distribution of tweets present in the dataset vs those we predicted.
 The anticipation, disgust, joy, surprise, and trust emoticons appear less frequently in the predicted dataset,
@@ -727,7 +731,7 @@ and these formal accounts also tweet about different topics than more informal a
 Our main result is shown in Figure \ref{fig:tweets_per_day_sent}.
 For each day, we calculate the fraction of tweets that represent each emotion from the Plutchik wheel (see Figure \ref{fig:Mapped_emojis}),
 and we can observe a strong correlation between the emotional content of tweets and important COVID-19 news.
-For example, on March $\XXX$, the World Health Organization (WHO) declared COVID-19 a worldwide pandemic.
+For example, on March 11, the World Health Organization (WHO) declared COVID-19 a worldwide pandemic.
 At the same time, we can see a large spike in tweets about the coronavirus,
 and in particular we see an increase in sadness and a decrease in joy.
 Since sadness and joy are at opposite ends of the Plutchik wheel of emotions,
@@ -735,14 +739,14 @@ it makes sense that a rise in one would cause a fall in the other.
 %Surprisingly, however, we also see a decrease in the fraction of fear related tweets.
 %This surprising result demonstrates that we cannot assume how users will react to news events,
 %and we must look at raw data.
-As another example, on May $\XXX$, the United States had its one hundred thousandth death to the coronavirus.
+As another example, on May 28, the United States had its one hundred thousandth death to the coronavirus.
 At the same time, we see spikes in anger and disgust.
 The following following tweet from this time period is a representative example:
 \begin{displayquote}
     How do we tolerate 3000 Americans dying everyday from \#COVID19? THREE. THOUSAND. EVERY. DAY.
 \end{displayquote}
 This tweet was not originally sent with any emoticons,
-but our $\bertmoji$ model was able to label it with $\XXX$.
+but our $\bertmoji$ model was able to label it with \emoji{1f620}, \emoji{mask_photo}, \emoji{1f644}, \emoji{1f62d}.
 
 %Due to the fact that emojis such as crying-face with tears, dominate the $\emoticon$ dataset,
 %we allow the model to predict up to 5 unique emojis for one tweet, to promote more diversity among our results.
