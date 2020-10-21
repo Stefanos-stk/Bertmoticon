@@ -66,6 +66,7 @@ def download_model(force_redownload=False):
     os.close(fd)
     print()
 
+
     # extract the model
     print("Extracting the model")
     tf = tarfile.open(temp_path)
