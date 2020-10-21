@@ -1,28 +1,58 @@
-# Multilingual Emoticon Prediction of Tweets about COVID-19😷
+# Bertmoticon 
 
-Emojis are a widely used tool for encoding emotional content in informal messages such as
-tweets, and predicting which emoji corresponds to a piece of text can be used as a proxy for
-measuring the emotional content in the text. This paper presents the first model for predicting
-emojis in highly multilingual text. Our BERTmoticon model is a fine-tuned version of the
-multilingual BERT model (Devlin et al., 2018), and it can predict emojis for text written in 102
-different languages. We trained our BERTmoticon model on 54.2 million geolocated tweets
-sent in the first 6 months of 2020, and we apply the model to a case study analyzing the emotional
-reaction of Twitter users to news about the coronavirus. Example findings include a spike in
-sadness when the World Health Organization (WHO) declared that coronavirus was a global
-pandemic, and a spike in anger and disgust when the number of COVID-19 related deaths in
-the United States surpassed one hundred thousand. We provide an easy-to-use and open source
-python library for predicting emojis with BERTmoticon so that the model can easily be applied
-to other data mining tasks.
+The Bertmoticon package is fine-tuned from the [BERT](https://github.com/google-research/bert) model, to the emoji prediction task. It can predict emojis in 102 languages. 
 
-The table below shows what emojis Bertmoticon can predict across 10 different languages. (Translation: Google Translate) 
-![GitHub Logo](/paper/png_figures/languages.png)
+## Instalation
 
-The F1-Perfomance of the model is shown here:
-![GitHub Logo](/paper/png_figures/f1perf.png)
+You can install the Bertmoticon package from [PyPI](https://pypi.org/):
 
-Using the emoji definitions and their use in our model we were able to map them to the plutchik wheel of sentiment. (Mapping can be further improved)
-![GitHub Logo](/paper/png_figures/emojimap.png)
+```
+pip3 install bertmoticon
+```
 
-We then applied this model and this mapping to 16 million tweets from the first half of 2020. The mask emoji is considered as a seperate category, since we want to observe any earlier occurences of it before the outbreak.
+## How to use
 
-![GitHub Logo](/paper/png_figures/graph8.png)
+```
+import bertmoticon.predict
+
+print(all_categories)
+```
+prints the emojis supported by the library:
+```
+ ['😂', '😭', '😍', '😊', '🙏', '😅', '😁', '🙄', '😘', '😔', '😩', '😉', '😎', '😢', '😆', '😋', '😌', '😳', '😏', '🙂', '😃', '🙃', '😒', '😜', '😀', '😱', '🙈', '😄', '😡', '😬', '🙌', '😴', '😫', '😪', '😤', '😇', '😈', '😞', '😷', '😣', '😥', '😝', '😑', '😓', '😕', '😹', '😐', '😻', '😖', '😛', '😠', '🙊', '😰', '😚', '😲', '😶', '😮', '🙁', '😵', '😗', '😟', '😨', '🙇', '🙋', '😙', '😯', '🙆', '🙉', '😧', '😿', '😸', '🙀', '😦', '😽', '😺', '😼', '🙅', '😾', '🙍', '🙎']
+```
+
+The first function is:
+```
+dict_results = infer_mappings(["This covid pandemic is getting rougher. WEAR YOUR MASK","Je veux dormir... et tout oublier."],{"Category_1":["😂", "😭"],"Category_2":["😷"]},5)
+print(dict_results)
+```
+and it returns:
+```
+{'Category_1': 4, 'Category_2': 1}
+```
+The arguments of the infer_mappings function are:
+
+- list of strings : ```["This covid pandemic is getting rougher. WEAR YOUR MASK","Je veux dormir... et tout oublier."]```
+- dictionary categorizing emojis: ```{"Category_1":["😂", "😭"],"Category_2":["😷"]}```
+- number of guesses per sentence: ```5```
+
+It returns the number of occurences of each emoji and places it under the categories in the given dictionary.
+
+The other function is:
+```
+list_results = infer(["This covid pandemic is getting rougher. WEAR YOUR MASK","Je veux dormir... et tout oublier."],5)
+print(list_results)
+```
+returning a list of dictionaries containing the guesses and the percentages for each given string:
+```
+[{'😷': '0.3458', '😂': '0.0502', '😭': '0.0415', '😔': '0.0414', '😢': '0.0403'}, 
+{'😴': '0.0966', '😭': '0.0888', '😂': '0.0885', '😔': '0.0719', '🙄': '0.0640'}]
+```
+
+The fine-tuned model does is not inside of the pypi package; instead it is downloaded upon first usage of the ```infer``` function. Total size of the mode is 1.34GB.
+
+
+## How to download pre-trained model
+
+Using the function ```download()``` you can download the fine-tuned model. The fine-tuned is also downloaded when using the ```infer``` or ```infer_mappings```.
