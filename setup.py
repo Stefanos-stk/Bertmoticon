@@ -14,7 +14,7 @@ setup(
     description="multilingual emoji prediction",
     long_description=README,
     long_description_content_type="text/markdown",
-    url="https://github.com/Stefanos-stk/Covid19Twitter",
+    url="https://github.com/Stefanos-stk/Bertmoticon",
     author="Stefanos Stoikos",
     author_email="st.stoikos@gmail.com",
     license="MIT",
@@ -24,6 +24,9 @@ setup(
         "Programming Language :: Python :: 3.7",
     ],
     packages=find_packages(),
+    #added one extra step to the package dir so that the call inside __init__.py is just DATA_PATH + 'model'
+    package_dir ={'bertmoticon': 'bertmoticon/'
+    },
     include_package_data=True,
     install_requires=["torch","transformers","requests"],
     entry_points={
