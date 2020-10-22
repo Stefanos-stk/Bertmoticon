@@ -1,26 +1,16 @@
 '''
-FIXME:
-add an appropriate docstring for this file
+Contains the infer and infer_mappings functions that use the pre-trained bertmoticon model to predict emojis for list of strings
 '''
-
-
 import os
-import pkg_resources
 
-__version__ = "0.1.0"
 
+__version__ = "1.0.0"
 
 emojis = ['😂','😭','😍','😊','🙏','😅','😁','🙄','😘','😔','😩','😉','😎','😢','😆','😋','😌','😳','😏','🙂','😃','🙃','😒','😜','😀','😱','🙈','😄','😡','😬','🙌','😴','😫','😪','😤','😇','😈','😞','😷','😣','😥','😝','😑','😓','😕','😹','😐','😻','😖','😛','😠','🙊','😰','😚','😲','😶','😮','🙁','😵','😗','😟','😨','🙇','🙋','😙','😯','🙆','🙉','😧','😿','😸','🙀','😦','😽','😺','😼','🙅','😾','🙍','🙎']
 
-
-# FIXME:
-# this should be set to the data directory for the package
-# see https://stackoverflow.com/a/5601839/1241368
 model_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),'bertmoticon')
+#DATA_PATH = pkg_resources.resource_filename('bertmoticon','bertmoticon')
 
-#introduced the data path from pkg resources & included relative path to setup.py
-DATA_PATH = pkg_resources.resource_filename('bertmoticon','model/')
-print(DATA_PATH)
 
 def is_model_downloaded():
     '''
@@ -88,7 +78,6 @@ def infer(lines:list, guesses=80):
     Returns:
         (list): list of dictionaries for each sentece provided
 
-
     >>> infer(["Vote #TRUMP2020ToSaveAmerica from corrupt Joe Biden and the radical left.","MASKS, YOU NEED TO WEAR THEM PEOPLE! ","je suis fatigue, dormir","god i love macdonalds ughhh"],3)
     [{'😂': '0.1938', '😡': '0.1866', '🙄': '0.0847'}, {'😷': '0.4744', '😂': '0.0824', '🙄': '0.0397'}, {'😴': '0.1853', '😭': '0.1700', '😂': '0.0712'}, {'😭': '0.3475', '😩': '0.1859', '😍': '0.1412'}]
     """
@@ -150,35 +139,17 @@ def infer(lines:list, guesses=80):
             out = self.fc_class(embedding)
             return out, None
 
-    #torch.set_default_tensor_type('torch.cuda.FloatTensor')
-    # FIXME:
-    # do you know what this line is supposed to do?
-    # as-is, it doesn't do anything but mess up settings for advanced users
-    #INFO, WARNING, ERROR messages are not printed, that should probably not be included
-    #os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+    #Get model, softmax and set model to eval()
     model = BertFineTuning()
     model.to(device)
     softmax = torch.nn.Softmax(dim=1)
     model.eval()
 
     # load the pretrained model
-    # FIXME:
-    # every time you call the infer function, you are reloading the model, which is incredibly slow
-    # you need to make your model variable static function and only load it on the first call to infer
-    # see: https://stackoverflow.com/questions/279561/what-is-the-python-equivalent-of-static-variables-inside-a-function
-    #I think i have included the static variables now
-    #I did some testing to ensure they work, when using the infer function twice in a row, (i used time.time()) we save about 1-1.5 seconds; when using the infer call 5 consecutive times we save about 5 seconds (27 compared to 32)
     if not hasattr(infer, "model_dict"):
         infer.model_dict = torch.load(os.path.join(model_path,'babel/model'))
-        #print statements for my own sake 
-        print("loading")
-    else:
-        print("already here")
     model.load_state_dict(infer.model_dict['model_state_dict'], strict=False)
-    '''
-    model_dict = torch.load(os.path.join(model_path,'babel/model'))
-    model.load_state_dict(model_dict['model_state_dict'], strict=False)
-    '''
+
 
     #Get the results and append them to the dictionaries
     return_lst = []
@@ -198,14 +169,6 @@ def infer(lines:list, guesses=80):
 
         return_lst.append(dict(zip(lst_emoji, lst_perc)))
         
-        # FIXME:
-        # the comments in this section are not particularly useful,
-        # for example, "clear lists" doesn't tell me anything that I couldn't more easily get
-        # from just reading the code that says list.clear()
-        # a comment should either:
-        # 1) summarize a whole "paragraph" of code into a single line, or
-        # 2) tell my *why* you are doing something
-
         lst_emoji.clear()
         lst_perc.clear()
     return return_lst
@@ -253,6 +216,3 @@ def infer_mappings(lines:list,mappings:dict,guesses =80):
                 if key in emoji_cat:
                     return_dict[category] += 1       
     return return_dict
-
-
-print(infer_mappings(["he;;p ", "j iandsaisd "],5))

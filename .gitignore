@@ -15,5 +15,7 @@ __pycache__
 *.swo
 *.swp
 
-
-
+# pypi
+/bertmoticon.egg-info/*
+/build/*
+/dist/*
