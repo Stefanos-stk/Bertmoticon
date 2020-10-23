@@ -147,7 +147,10 @@ def infer(lines:list, guesses=80):
 
     # load the pretrained model
     if not hasattr(infer, "model_dict"):
-        infer.model_dict = torch.load(os.path.join(model_path,'babel/model'))
+        infer.model_dict = torch.load(
+                os.path.join(model_path,'babel/model'),
+                map_location=torch.device('cpu')
+                )
     model.load_state_dict(infer.model_dict['model_state_dict'], strict=False)
 
 
