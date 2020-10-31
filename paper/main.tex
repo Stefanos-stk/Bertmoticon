@@ -68,28 +68,23 @@
 % paper configuration
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\setlength\titlebox{5cm}
-%\colingfinalcopy % Uncomment this line for the final submission
+\setlength\titlebox{5cm}
+\colingfinalcopy % Uncomment this line for the final submission
 
 % You can expand the titlebox if you need extra space
 % to show all the authors. Please do not make the titlebox
 % smaller than 5cm (the original size); we will check this
 % in the camera-ready version and ask you to change it back.
 
-
-%\title{$\bertmoji$ says: "wear a mask" :  \includegraphics[scale=0.07]{images/mask_photo.png}}
 \title{Multilingual Emoticon Prediction of Tweets about COVID-19 \emoji{mask_photo.png} }
 
-\author{First Author \\
-  Affiliation / Address line 1 \\
-  Affiliation / Address line 2 \\
-  Affiliation / Address line 3 \\
-  {\tt email@domain} \\\And
-  Second Author \\
-  Affiliation / Address line 1 \\
-  Affiliation / Address line 2 \\
-  Affiliation / Address line 3 \\
-  {\tt email@domain} \\}
+\author{Stefanos Stoikos \\
+  Pomona College\\
+
+  {\tt st.stoikos@gmail.com} \\\And
+  Mike Izbicki \\
+  Claremont Mckenna College\\
+  {\tt mike@izbicki.me} \\}
 
 \date{}
 
@@ -107,7 +102,7 @@
     and predicting which emoji corresponds to a piece of text can be used as a proxy for measuring the emotional content in the text.
     This paper presents the first model for predicting emojis in highly multilingual text.
     Our $\bertmoji$ model is a fine-tuned version of the $\bert$ model \citep{devlin2018bert},
-    and it can predict emojis for text written in 102 different languages.
+    and it can predict emojis for text, written in 102 different languages.
     We trained our $\bertmoji$ model on 54.2 million geolocated tweets sent in the first 6 months of 2020,
     and we apply the model to a case study analyzing the emotional reaction of Twitter users to news about the coronavirus.
     Example findings include a spike in sadness when the World Health Organization (WHO) declared that coronavirus was a global pandemic,
@@ -126,7 +121,7 @@
     % for review submission
     %
     \hspace{-0.65cm}  % space normally used by the marker
-    Place licence statement here for the camera-ready version. 
+    %Place licence statement here for the camera-ready version. 
     %
     % % final paper: en-uk version 
     %
@@ -135,14 +130,11 @@
     % Attribution 4.0 International Licence.
     % Licence details:
     % \url{http://creativecommons.org/licenses/by/4.0/}.
-    % 
-    % % final paper: en-us version 
-    %
-    % \hspace{-0.65cm}  % space normally used by the marker
-    % This work is licensed under a Creative Commons 
-    % Attribution 4.0 International License.
-    % License details:
-    % \url{http://creativecommons.org/licenses/by/4.0/}.
+    \hspace{-0.65cm}  % space normally used by the marker
+    This work is licensed under a Creative Commons 
+    Attribution 4.0 International License.
+    License details:
+    \url{http://creativecommons.org/licenses/by/4.0/}.
 }
 
 
@@ -235,9 +227,13 @@ but it is also much more useful.
 Second, we are the first paper to consider the more general emoji prediction problem rather than the sentiment prediction problem.
 In sentiment prediction,
 the goal is to assign a positive or negative sentiment to each tweet,
-and for the coronavirus this is almost trivial---the majority of tweets about COVID-19 express negative sentiments because the disease has killed millions of people and forced us to make drastic changes to our lifestyles.
-In the emoji prediction task, however, we are able to get a more fine-tuned emotional understanding of tweets to understand why the sentiment is negative.
-For example, we can answer questions like: is the tweet sad? angry? fearful? disgusted?
+and for the coronavirus topic it can be difficult to decidedly assign one sentiment. Tweets about COVID-19 can express negative sentiments because the disease has killed millions of people and forced us to make drastic changes to our lifestyles but also can contain funny, uplifting content exhibiting a positive sentiment such as:
+
+\begin{displayquote}
+    Happy \#NationalCatDay from my beautiful adopted pandemic pet!   
+\end{displayquote}
+
+In the emoji prediction task, we are able to get a more fine-tuned emotional understanding of tweets. For example, we can answer questions like: is the tweet sad? angry? joyful?
 
 %college students respond differently \citep{duong2020ivory}
 %map travel patterns using geotagged tweets \citep{feng2020working}
@@ -247,7 +243,7 @@ In Section \ref{sec:bertmoji} we introduce the first dataset for training highly
 We then use this dataset to train the first highly multilingual emoticon prediction model, $\bertmoji$.
 Our model is open source and has an easy to use PyPi package.%
 \footnote{
-    URL blinded for peer review.
+    \url{https://pypi.org/project/bertmoticon/}
 }
 In Section \ref{sec:casestudy}, we introduce the first highly multilingual dataset of tweets about COVID-19, called $\corona$.
 To generate the dataset, we introduce a novel dataset generation method combining the Twitter API, Bing Translate, and the $\spacy$ tokenization library \citep{spacy2}.
@@ -482,7 +478,7 @@ Even for these tweets, which are either written in an unsupported language or do
 
 \subsection{Model Evaluation}
 
-The $\bertmojill$ model achieves a Macro-F1 score of 0.159 on the test set and the $\bertmoji$ model achieves a Macro-F1 score of 0.210. 
+The $\bertmojill$ model achieves a Macro-F1 score of 0.159 on the test set and the $\bertmoji$ model achieves a Macro-F1 score of 0.210. Comparatively, top ranked participants of the SemEval 2018 Task 2: Multilingual Emoji Prediction \citep{barbieri2018semeval}, \citep{coltekin-rama-2018-tubingen} achieved F1-scores of 0.3599 in English and 0.2236 in Spanish.
 %Afterwards, we performed the classification on the top-15, F1-score achieving emojis. 
 %Those emojis comprised about 70 percent of the dataset.
 %The results were the F1-scores of 24.07\% and 31.77\% accordingly.
@@ -498,8 +494,8 @@ and our model is able to capture this fact.
 For some applications, however, it may be more useful to make emoji predictions in a language-agnostic way.
 Because the $\bertmojill$ model only trains the last layer of the multilingual BERT model,
 it receives no information about the input language,
-and provides more language-agnostic emoji predictions.
-This language-agnostic approach, however, results in the lower F1 scores.
+and provides more language-agnostic emoji predictions. In other words, the model does not take into account the context, idioms or the argot of the language and just uses the core-semantic meaning of the text to generate a emojis.
+This language-agnostic approach, however, results in  lower F1 scores since the model does not adapt to those language patterns.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -547,7 +543,7 @@ then we present an analysis of this dataset.
 }
     \caption{
         The 29 English-language search terms we used to select tweets.
-        These terms were translated into 72 other languages as part of our multilingual tweet filtering process.
+        These terms were translated using Bing Translate into 72 other languages as part of our multilingual tweet filtering process.
     }
     \label{fig:terms}
 \end{figure}
@@ -562,7 +558,7 @@ so we used the following four step procedure:
     We generated a list of 29 English-language search terms related to the coronavirus,
     as shown in Figure \ref{fig:terms}.
     The choice of terms was inspired by the terms used in a dataset generated by \citet{chen2020tracking},
-    but we also removed Twitterisms like ``kungflu'' which would not translate well into non-Enlgish languages.
+    but we also removed Twitterisms like ``kungflu'' which would not translate well into non-English languages.
         (We discuss in detail the full differences between our dataset and the dataset of \citet{chen2020tracking} below.)
     Our search terms include generic words like ``china'' and ``trump'' that are not necessarily about the coronavirus,
     but given the time period we searched over,
@@ -585,7 +581,7 @@ Figure \ref{fig:lang} shows the full list of 54 languages that are supported by 
 The $\corona$ dataset contains tweets in an unknown number of other languages,
 and the filtering procedure for these unsupported languages used language-agnostic steps,
 which likely results in less recall.
-In total, 2.6 million tweets meet the criteria to be included in the $\corona$ dataset.
+In total, 16.2 million tweets meet the criteria to be included in the $\corona$ dataset.
 
 \begin{figure}
     \small
@@ -670,11 +666,11 @@ In total, 2.6 million tweets meet the criteria to be included in the $\corona$ d
     \label{fig:actual_vs_pred}
 \end{figure}
 
-The other significant dataset of coronavirus related tweets is due to \citet{chen2020tracking}.
+The other significant dataset of coronavirus related tweets was introduced by \citet{chen2020tracking}.
 There are two main differences between our dataset and theirs.
 First, we only include geolocated tweets,
 whereas they include non-geolocated tweets as well.
-This results in their dataset being about fifty times larger than ours,
+This results in their dataset being about fifteen times larger than ours,
 with about 250 million tweets over the same time period.
 Because their data is not geolocated, however, it is not suitable for understanding how different countries have reacted emotionally to COVID-19.
 The second difference is that our dataset uses a more advanced language-aware filtering method.
@@ -711,7 +707,7 @@ Capturing as many non-English tweets as possible about COVID-19 is important for
     \caption{
         The emotional content of tweets in the $\corona$ dataset changes over time and reacts to major news events.
         The shaded bar plot in the background shows the total number of tweets in the $\corona$ dataset sent on a particular day (left y-axis scale),
-        and the colored line charts show the fraction of tweets in a particular day that correspond to each emotion on the Plutchik wheel or the mast emoji (right y-axis scale).
+        and the colored line charts show the fraction of tweets in a particular day that correspond to each emotion on the Plutchik wheel or the mask emoji (right y-axis scale).
         We can see clear emotional reactions to the news events labelled with vertical lines.
         %For example, when WHO declared a pandemic on $\XXX$, we can see a peak in the amount of 
         %\fixme{The fonts are way too small.}
@@ -721,7 +717,7 @@ Capturing as many non-English tweets as possible about COVID-19 is important for
 \end{figure}
 
 Only 15.11\% percent of tweets in the $\corona$ dataset contain an emoticon.
-We used the $\bertmoji$ model to label the remaining tweets.
+We used the $\bertmoji$ model to label the remaining tweet in an effort to capture sentiment included in emoji-free tweets such as the BBC tweet mentioned in the Introduction.
 Figure \ref{fig:actual_vs_pred} shows the distribution of tweets present in the dataset vs those we predicted.
 The anticipation, disgust, joy, surprise, and trust emoticons appear less frequently in the predicted dataset,
 and the anger, sadness, and fear emotions appear more often in the predicted set.
@@ -741,12 +737,12 @@ it makes sense that a rise in one would cause a fall in the other.
 %and we must look at raw data.
 As another example, on May 28, the United States had its one hundred thousandth death to the coronavirus.
 At the same time, we see spikes in anger and disgust.
-The following following tweet from this time period is a representative example:
+The following tweet from this time period is a representative example:
 \begin{displayquote}
     How do we tolerate 3000 Americans dying everyday from \#COVID19? THREE. THOUSAND. EVERY. DAY.
 \end{displayquote}
 This tweet was not originally sent with any emoticons,
-but our $\bertmoji$ model was able to label it with \emoji{1f620}, \emoji{mask_photo}, \emoji{1f644}, \emoji{1f62d}.
+but our $\bertmoji$ model was able to label it with \emoji{1f620}, \emoji{mask_photo}, \emoji{1f644}, \emoji{1f62d}. In addition, we highlight an increase in the mask emoji usage around mid-January. Interestingly, at that time little information was available about COVID-19 and protecting yourself against it. Finally, in early February some important news-events that circulated in Twitter were the Diamond Princess Ship being placed under quarantine and the death of Dr Li Wenliang, a Chinese doctor who issued a warning about the coronavirus outbreak before it was officially recognized. At that point we notice a spike in anger and disgust.
 
 %Due to the fact that emojis such as crying-face with tears, dominate the $\emoticon$ dataset,
 %we allow the model to predict up to 5 unique emojis for one tweet, to promote more diversity among our results.
