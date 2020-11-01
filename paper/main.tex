@@ -80,7 +80,6 @@
 
 \author{Stefanos Stoikos \\
   Pomona College\\
-
   {\tt st.stoikos@gmail.com} \\\And
   Mike Izbicki \\
   Claremont Mckenna College\\
@@ -102,7 +101,7 @@
     and predicting which emoji corresponds to a piece of text can be used as a proxy for measuring the emotional content in the text.
     This paper presents the first model for predicting emojis in highly multilingual text.
     Our $\bertmoji$ model is a fine-tuned version of the $\bert$ model \citep{devlin2018bert},
-    and it can predict emojis for text, written in 102 different languages.
+    and it can predict emojis for text written in 102 different languages.
     We trained our $\bertmoji$ model on 54.2 million geolocated tweets sent in the first 6 months of 2020,
     and we apply the model to a case study analyzing the emotional reaction of Twitter users to news about the coronavirus.
     Example findings include a spike in sadness when the World Health Organization (WHO) declared that coronavirus was a global pandemic,
@@ -120,7 +119,7 @@
     %
     % for review submission
     %
-    \hspace{-0.65cm}  % space normally used by the marker
+    %\hspace{-0.65cm}  % space normally used by the marker
     %Place licence statement here for the camera-ready version. 
     %
     % % final paper: en-uk version 
@@ -243,7 +242,7 @@ In Section \ref{sec:bertmoji} we introduce the first dataset for training highly
 We then use this dataset to train the first highly multilingual emoticon prediction model, $\bertmoji$.
 Our model is open source and has an easy to use PyPi package.%
 \footnote{
-    \url{https://pypi.org/project/bertmoticon/}
+    \url{https://github.com/Stefanos-stk/Bertmoticon}
 }
 In Section \ref{sec:casestudy}, we introduce the first highly multilingual dataset of tweets about COVID-19, called $\corona$.
 To generate the dataset, we introduce a novel dataset generation method combining the Twitter API, Bing Translate, and the $\spacy$ tokenization library \citep{spacy2}.
@@ -478,7 +477,8 @@ Even for these tweets, which are either written in an unsupported language or do
 
 \subsection{Model Evaluation}
 
-The $\bertmojill$ model achieves a Macro-F1 score of 0.159 on the test set and the $\bertmoji$ model achieves a Macro-F1 score of 0.210. Comparatively, top ranked participants of the SemEval 2018 Task 2: Multilingual Emoji Prediction \citep{barbieri2018semeval}, \citep{coltekin-rama-2018-tubingen} achieved F1-scores of 0.3599 in English and 0.2236 in Spanish.
+The $\bertmojill$ model achieves a Macro-F1 score of 0.159 on the test set and the $\bertmoji$ model achieves a Macro-F1 score of 0.210.
+%Comparatively, top ranked participants of the SemEval 2018 Task 2: Multilingual Emoji Prediction \citep{barbieri2018semeval}, \citet{coltekin-rama-2018-tubingen} achieved F1-scores of 0.3699 in English and 0.2236 in Spanish.
 %Afterwards, we performed the classification on the top-15, F1-score achieving emojis. 
 %Those emojis comprised about 70 percent of the dataset.
 %The results were the F1-scores of 24.07\% and 31.77\% accordingly.
@@ -491,11 +491,11 @@ As Figure \ref{fig:prediction_top10_langs} demonstrates, this causes the same te
 We believe that this is a strength of our model,
 as different cultures use emojis differently,
 and our model is able to capture this fact.
-For some applications, however, it may be more useful to make emoji predictions in a language-agnostic way.
-Because the $\bertmojill$ model only trains the last layer of the multilingual BERT model,
-it receives no information about the input language,
-and provides more language-agnostic emoji predictions. In other words, the model does not take into account the context, idioms or the argot of the language and just uses the core-semantic meaning of the text to generate a emojis.
-This language-agnostic approach, however, results in  lower F1 scores since the model does not adapt to those language patterns.
+%For some applications, however, it may be more useful to make emoji predictions in a language-agnostic way, and the $\bertmojill$ model may be more suitable for this task.
+%Because the $\bertmojill$ model only trains the last layer of the multilingual BERT model,
+%it receives no information about the input language,
+%and provides more language-agnostic emoji predictions.
+%This language-agnostic approach, however, results in  lower F1 scores since the model does not adapt to those language patterns.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -717,7 +717,7 @@ Capturing as many non-English tweets as possible about COVID-19 is important for
 \end{figure}
 
 Only 15.11\% percent of tweets in the $\corona$ dataset contain an emoticon.
-We used the $\bertmoji$ model to label the remaining tweet in an effort to capture sentiment included in emoji-free tweets such as the BBC tweet mentioned in the Introduction.
+We used the $\bertmoji$ model to label the remaining tweets.
 Figure \ref{fig:actual_vs_pred} shows the distribution of tweets present in the dataset vs those we predicted.
 The anticipation, disgust, joy, surprise, and trust emoticons appear less frequently in the predicted dataset,
 and the anger, sadness, and fear emotions appear more often in the predicted set.
@@ -742,7 +742,12 @@ The following tweet from this time period is a representative example:
     How do we tolerate 3000 Americans dying everyday from \#COVID19? THREE. THOUSAND. EVERY. DAY.
 \end{displayquote}
 This tweet was not originally sent with any emoticons,
-but our $\bertmoji$ model was able to label it with \emoji{1f620}, \emoji{mask_photo}, \emoji{1f644}, \emoji{1f62d}. In addition, we highlight an increase in the mask emoji usage around mid-January. Interestingly, at that time little information was available about COVID-19 and protecting yourself against it. Finally, in early February some important news-events that circulated in Twitter were the Diamond Princess Ship being placed under quarantine and the death of Dr Li Wenliang, a Chinese doctor who issued a warning about the coronavirus outbreak before it was officially recognized. At that point we notice a spike in anger and disgust.
+but our $\bertmoji$ model was able to label it with \emoji{1f620}, \emoji{mask_photo}, \emoji{1f644}, \emoji{1f62d}.
+As another example, notice that the mask emoji usage increases in mid-January.
+Interestingly, at that time little information was available about COVID-19 and protecting yourself against it.
+Finally, in early February some important news-events that circulated in Twitter were the Diamond Princess Ship being placed under quarantine and the death of Doctor Li Wenliang
+(a Chinese doctor who issued a warning about the coronavirus before the pandemic was officially recognized).
+At that point we notice a spike in anger and disgust.
 
 %Due to the fact that emojis such as crying-face with tears, dominate the $\emoticon$ dataset,
 %we allow the model to predict up to 5 unique emojis for one tweet, to promote more diversity among our results.
