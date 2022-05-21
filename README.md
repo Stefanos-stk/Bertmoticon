@@ -2,6 +2,11 @@
 
 The Bertmoticon package is fine-tuned from the [BERT](https://github.com/google-research/bert) model, to the emoji prediction task. It can predict emojis in 102 languages. In this package we include two functions that enable the use of it: [bertmoticon.infer](#bertmoticon.infer) and [bertmoticon.infer_mappings](#bertmoticon.infer_mappings). The number of emojis available for this model are 80; and are listed in [bertmoticon.emojis](#bertmoticon.emojis). 
 
+## TwitterCovid Dataset
+
+You can download the TwitterCovid dataset that is mentioned in the paper through here: (5 parts) [a](https://github.com/Stefanos-stk/Bertmoticon/blob/master/bertmoticon_covid_dataset_part-aa.gz), [b](https://github.com/Stefanos-stk/Bertmoticon/blob/master/bertmoticon_covid_dataset_part-ab.gz) , [c](https://github.com/Stefanos-stk/Bertmoticon/blob/master/bertmoticon_covid_dataset_part-ac.gz) , [d](https://github.com/Stefanos-stk/Bertmoticon/blob/master/bertmoticon_covid_dataset_part-ad.gz) , [e](https://github.com/Stefanos-stk/Bertmoticon/blob/master/bertmoticon_covid_dataset_part-ae.gz)
+Abiding by TwitterAPI's guidelines we are only allowed to provide the ids of the tweets.
+
 ## Installation
 
 Installing the Bertmoticon package from [PyPI](https://pypi.org/) using:
