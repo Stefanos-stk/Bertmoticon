@@ -4,7 +4,7 @@ Contains the infer and infer_mappings functions that use the pre-trained bertmot
 import os
 
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 emojis = ['😂','😭','😍','😊','🙏','😅','😁','🙄','😘','😔','😩','😉','😎','😢','😆','😋','😌','😳','😏','🙂','😃','🙃','😒','😜','😀','😱','🙈','😄','😡','😬','🙌','😴','😫','😪','😤','😇','😈','😞','😷','😣','😥','😝','😑','😓','😕','😹','😐','😻','😖','😛','😠','🙊','😰','😚','😲','😶','😮','🙁','😵','😗','😟','😨','🙇','🙋','😙','😯','🙆','🙉','😧','😿','😸','🙀','😦','😽','😺','😼','🙅','😾','🙍','🙎']
 
@@ -114,6 +114,8 @@ def infer(lines:list, guesses=80):
                 pad_to_max_length = True,
                 return_attention_mask = True,
                 return_tensors = 'pt',
+                truncation=True,
+                padding='max_length'
                 )
             encodings.append(encoding)
         input_ids = torch.cat([ encoding['input_ids'] for encoding in encodings ],dim=0).to(device)
@@ -134,7 +136,8 @@ def infer(lines:list, guesses=80):
 
         def forward(self,x):
             input_ids, attention_mask = x
-            last_layer,embedding = self.bert(input_ids)
+            output = (self.bert(input_ids))
+            last_layer = output.last_hidden_state
             embedding = torch.mean(last_layer,dim=1)
             out = self.fc_class(embedding)
             return out, None
@@ -149,7 +152,8 @@ def infer(lines:list, guesses=80):
     if not hasattr(infer, "model_dict"):
         infer.model_dict = torch.load(
                 os.path.join(model_path,'babel/model'),
-                map_location=torch.device('cpu')
+                map_location=torch.device('cpu'),
+                weights_only=True
                 )
     model.load_state_dict(infer.model_dict['model_state_dict'], strict=False)
 
@@ -219,3 +223,9 @@ def infer_mappings(lines:list,mappings:dict,guesses =80):
                 if key in emoji_cat:
                     return_dict[category] += 1       
     return return_dict
+
+
+
+if __name__ == "__main__":
+    res = infer(["so angry with this mess i cant i hate this"],4)
+    print(res)
